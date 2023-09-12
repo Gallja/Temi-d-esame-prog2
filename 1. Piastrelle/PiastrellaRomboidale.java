@@ -16,6 +16,7 @@ public class PiastrellaRomboidale extends Piastrella {
      */
 
     // ATTRIBUTI
+    /** La diagonale minore della piastrella romboidale e la diagonale maggiore */
     private final int diagonale_minore;
     private final int diagonale_maggiore;
 

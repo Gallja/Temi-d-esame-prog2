@@ -25,6 +25,9 @@ public class Pavimentazione implements Rivestimento, Iterable<Pavimentazione.Com
          */
 
         // ATTRIBUTI
+        /**
+         * Il Rivestimento della Pavimentazione e la relativa quantità di quest'ultimo
+         */
         public final Rivestimento rivestimento;
         public int quantita;
 
@@ -98,6 +101,7 @@ public class Pavimentazione implements Rivestimento, Iterable<Pavimentazione.Com
     }
 
     // METODI
+
     @Override
     public int get_costo() {
         int tot = 0;
