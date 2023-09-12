@@ -9,7 +9,7 @@ import java.util.Objects;
  * Le istanze di questa classe sono immutabili.
  */
 
-public class Pavimentazione implements Rivestimento {
+public class Pavimentazione implements Rivestimento, Iterable<Pavimentazione.Componente> {
     /**
      * OVERVIEW: Componente è una classe concreta che implementa
      * Le istanze di questa classe sono immutabili.
