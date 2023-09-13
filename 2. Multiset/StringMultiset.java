@@ -1,3 +1,5 @@
+import java.util.Set;
+
 /**
  * OVERVIEW: StringMultiset è un'interfaccia che descrive metodi e comportamenti
  * di un Multiset. Un Multiset è un insieme in cui ciascun elemento può essere
@@ -56,6 +58,14 @@ public interface StringMultiset extends Iterable<String> {
      * @return valore intero della molteplicità di {@code s} nel Multiset
      */
     public int multiplicity(String s);
+
+    /**
+     * Restituisce un nuovo set contenente gli elementi del Multiset senza
+     * ripetizioni.
+     * 
+     * @return il Set contenente gli elementi del Multiset senza ripetizioni.
+     */
+    public Set<String> get_supporto();
 
     /**
      * Restituisce un intero corrispondente alla cardinalità del Multiset.
