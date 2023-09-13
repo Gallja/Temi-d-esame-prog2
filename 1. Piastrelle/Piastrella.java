@@ -7,7 +7,8 @@
 public abstract class Piastrella implements Rivestimento {
     /**
      * IR: Il costo della piastrella deve obbligatoriamente essere positivo.
-     * AF: Una piastrella generica è rappresentata dal suo costo.
+     * 
+     * AF: Costo: costo della piastrella.
      */
 
     // ATTRIBUTI

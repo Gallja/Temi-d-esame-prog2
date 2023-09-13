@@ -9,8 +9,9 @@ public class PiastrellaTriangolare extends Piastrella {
     /**
      * IR: La base del triangolo deve obbligatoriamente essere positiva.
      * L'altezza del triangolo deve obbligatoriamente essere positiva.
-     * AF: Una piastrella triangolare è rappresentata dalle misure della sua
-     * base e della sua altezza.
+     * 
+     * AF: base: la misura della base della piastrella di forma triangolare.
+     * altezza: la misura dell'altezza della piastrella di forma triangolare.
      */
 
     // ATTRIBUTI
@@ -21,11 +22,17 @@ public class PiastrellaTriangolare extends Piastrella {
     // COSTRUTTORE
 
     /**
-     * Costruisce un nuovo oggetto PiastrellaTriangolare a partire dalle misure della base, dell'altezza e del costo unitario della piastrella.
      * 
-     * @throws IllegalArgumentException nel caso in cui la misura della base non fosse positiva.
+     * Costruisce un nuovo oggetto PiastrellaTriangolare a partire dalle misure
+     * della base, dell'altezza e del costo unitario della piastrella.
      * 
-     * @throws IllegalArgumetnException nel caso in cui la misura dell'altezza non fosse positiva.
+     * 
+     * @throws IllegalArgumentException nel caso in cui la misura della base non
+     *                                  fosse positiva.
+     * 
+     * 
+     * @throws IllegalArgumetnException nel caso in cui la misura dell'altezza non
+     *                                  fosse positiva.
      */
     public PiastrellaTriangolare(final int base, final int altezza, final int costo_unitario) {
         super(costo_unitario);

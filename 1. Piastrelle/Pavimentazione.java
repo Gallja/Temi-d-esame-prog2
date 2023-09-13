@@ -20,8 +20,9 @@ public class Pavimentazione implements Rivestimento, Iterable<Pavimentazione.Com
          * IR: Il rivestimento di un Componente non deve essere nullo.
          * La quantità di rivestimento di un Componente deve obbligatoriamente essere
          * positiva.
-         * AF: Un Componente è rappresentato dal suo rivestimento e dalla sua relativa
-         * quantità.
+         * 
+         * AF: rivestimento: il rivestimento che forma il compoenente.
+         * quantita: la quantità di rivestimento del componente.
          */
 
         // ATTRIBUTI
@@ -70,32 +71,36 @@ public class Pavimentazione implements Rivestimento, Iterable<Pavimentazione.Com
     }
 
     /**
-     * IR: La lista di componenti non deve essere nulla.
-     * La lista di componenti non deve essere vuota.
-     * AF: Una pavimentazione è rappresentata da una lista di Componenti.
+     * IR: La collezione di componenti non deve essere nulla.
+     * La collezione di componenti non deve essere vuota.
+     * 
+     * AF: componenti: una lista di componenti atta a rappresentare la
+     * pavimentazione di un qualsiasi ambiente.
      */
 
     // ATTRIBUTI
-    /** La lista di componenti che compongono la Pavimentazione */
+    /** La collezione di componenti che compongono la Pavimentazione */
     private final Collection<Componente> componenti;
 
     // COSTRUTTORE
 
     /**
-     * Costruisce un nuovo oggetto Pavimentazione a partire da una lista di
+     * Costruisce un nuovo oggetto Pavimentazione a partire da una collezione di
      * componenti avuta per argomento.
      * 
-     * @throws NullPointerException     nel caso in cui la lista di componenti avuta
+     * @throws NullPointerException     nel caso in cui la collezione di componenti
+     *                                  avuta
      *                                  per argomento fosse nulla.
      * 
-     * @throws IllegalArgumentException nel caso in cui la lista di componenti avuta
+     * @throws IllegalArgumentException nel caso in cui la collezione di componenti
+     *                                  avuta
      *                                  per argomento fosse vuota.
      */
     public Pavimentazione(final Collection<Componente> componenti) {
-        Objects.requireNonNull(componenti, "La lista di componenti fornita per argomento non deve essere nulla.");
+        Objects.requireNonNull(componenti, "La collezione di componenti fornita per argomento non deve essere nulla.");
 
         if (componenti.isEmpty())
-            throw new IllegalArgumentException("La lista di componenti non deve essere vuota.");
+            throw new IllegalArgumentException("La collezione di componenti non deve essere vuota.");
 
         this.componenti = List.copyOf(componenti);
     }

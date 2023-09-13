@@ -9,7 +9,8 @@ public class PiastrellaQuadrata extends Piastrella {
     /**
      * IR: Il lato della piastrella di forma quadrata deve obbligatoriamente essere
      * positivo.
-     * AF: Una piastrella quadrata è rappresentata dalla misura del suo lato.
+     * 
+     * AF: lato: la misura del lato della piastrella di forma quadrata.
      */
 
     // ATTRIBUTI

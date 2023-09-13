@@ -11,8 +11,11 @@ public class PiastrellaRomboidale extends Piastrella {
      * La diagonale maggiore deve obbligatoriamente essere positiva.
      * La diagonale maggiore deve obbligatoriamente essere maggiore rispetto alla
      * diagonale minore.
-     * AF: Una piastrella romboidale è rappresentata dalle misure della sua
-     * diagonale minore e della diagonale maggiore.
+     * 
+     * AF: diagonale minore: la misura della diagonale minore della piastrella di
+     * forma romboidale.
+     * diagonale maggiore: la misura della diagonale maggiore della piastralla di
+     * forma romboidale.
      */
 
     // ATTRIBUTI
