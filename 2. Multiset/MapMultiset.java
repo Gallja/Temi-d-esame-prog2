@@ -1,4 +1,7 @@
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -14,16 +17,59 @@ import java.util.Set;
 public class MapMultiset implements StringMultiset {
 
     /**
-     * IR: 
+     * IR: La mappa rappresentante il Multiset non deve essere nulla.
+     * Tutti gli elementi chiave del Multiset non devono essere nulli.
+     * Tutti gli elementi chiave del Multiset non devono essere vuoti.
+     * Tutti gli elementi chiave del Multiset devono essere univoci.
+     * Tutti gli elementi valore del Multiset non devono essere nulli.
      * 
-     * AF: 
+     * AF: mappa: mappa che rappresenta l'elemento contenuto nel Multiset e l'intero
+     * che ne indica la molteplicità all'interno del Multiset stesso.
      */
 
     // ATTRIBUTI
+    /** La mappa che rappresenta il Multiset */
+    HashMap<String, Integer> mappa = new HashMap<>();
 
     // COSTRUTTORE
 
-    //METODI
+    /**
+     * Costruisce un nuovo oggetto this a partire dalla HashMap {@code mappa_in}
+     * fornita per argomento.
+     * 
+     * @throws NullPointerException     nel caso in cui {@code mappa_in} fosse
+     *                                  nulla.
+     * 
+     * @throws NullPointerException     nel caso in cui la chiave di
+     *                                  {@code mappa_in} fosse nulla.
+     * 
+     * @throws NullPointerException     nel caso in cui il valore di
+     *                                  {@code mappa_in} fosse nullo.
+     * 
+     * @throws IllegalArgumentException nel caso in cui la chiave di
+     *                                  {@code mappa_in} fosse vuota.
+     * 
+     * @param mappa_in la HashMap fornita come argomento per costruire un nuovo
+     *                 oggetto MapMultiset.
+     */
+    public MapMultiset(final HashMap<String, Integer> mappa_in) {
+        Objects.requireNonNull(mappa_in, "La mappa fornita per argomento non deve essere nulla.");
+
+        for (Map.Entry<String, Integer> entry : mappa_in.entrySet()) {
+            Objects.requireNonNull(entry.getKey(), "L'elemento del Multiset non può essere nullo.");
+
+            Objects.requireNonNull(entry.getValue(),
+                    "La molteplicità dell'elemento del Multiset non può essere nullo.");
+
+            if (entry.getKey().isEmpty()) {
+                throw new IllegalArgumentException("L'elemento del Multiset non può essere vuoto.");
+            }
+
+            mappa.put(entry.getKey(), entry.getValue());
+        }
+    }
+
+    // METODI
 
     @Override
     public int add(String s) {
