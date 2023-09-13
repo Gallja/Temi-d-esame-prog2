@@ -121,7 +121,6 @@ public class MapMultiset implements StringMultiset {
 
     @Override
     public Iterator<String> iterator() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'iterator'");
+        return mappa.keySet().iterator();
     }
 }
