@@ -6,7 +6,7 @@ import java.util.Set;
 
 /**
  * OVERVIEW: ListMultiset è una classe concreta che implementa metodi e
- * comportamenti di una StringMultiset.
+ * comportamenti di un StringMultiset.
  * Un ListMultiset è rappresentato da una lista di elementi con o senza
  * ripetizioni.
  * Le istanze di questa classe sono mutabili.
