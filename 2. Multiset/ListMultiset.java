@@ -62,6 +62,27 @@ public class ListMultiset implements StringMultiset {
 
     // METODI
 
+    /**
+     * Restituisce l'elemento del Multiset a partire dall'indice avuto per
+     * argomento.
+     * 
+     * @throws IllegalArgumentException nel caso in cui {@code i} fosse maggiore
+     *                                  rispetto alla dimensione della lista di
+     *                                  Multiset.
+     * 
+     * @param i l'indice dell'elemento che si intende ricercare.
+     * @return la Stringa corrispondente all'indice avuto per argomento, non deve
+     *         mai essere vuota o nulla.
+     */
+    public String get_elem(int i) {
+        if (i > elem.size()) {
+            throw new IllegalArgumentException(
+                    "L'indice dell'elemento da ricercare è maggiore rispetto alla dimensione del Multiset.");
+        }
+
+        return elem.get(i);
+    }
+
     @Override
     public Set<String> get_supporto() {
         final Set<String> ris = new HashSet<String>();
