@@ -1,6 +1,8 @@
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * OVERVIEW: ListMultiset è una classe concreta che implementa metodi e
@@ -61,15 +63,30 @@ public class ListMultiset implements StringMultiset {
     // METODI
 
     @Override
+    public Set<String> get_supporto() {
+        final Set<String> ris = new HashSet<String>();
+
+        for (String elemento : elem) {
+            ris.add(elemento);
+        }
+
+        return ris;
+    }
+
+    @Override
     public int add(String s) {
-        // TODO Auto-generated method stub
-        return 0;
+        Objects.requireNonNull(s, "L'elemento avuto per argomento non deve essere nullo.");
+
+        elem.add(s);
+
+        return multiplicity(s);
     }
 
     @Override
     public boolean contains(String s) {
-        // TODO Auto-generated method stub
-        return false;
+        Objects.requireNonNull(s, "L'elemento avuto per argomento non deve essere nullo.");
+
+        return elem.contains(s);
     }
 
     @Override
@@ -80,25 +97,41 @@ public class ListMultiset implements StringMultiset {
 
     @Override
     public int multiplicity(String s) {
-        // TODO Auto-generated method stub
-        return 0;
+        Objects.requireNonNull(s, "L'elemento avuto per argomento non deve essere nullo.");
+
+        int conta = 0;
+        for (String elemento : elem) {
+            if (elemento.equals(s)) {
+                conta += 1;
+            }
+        }
+
+        return conta;
     }
 
     @Override
     public int remove(String s) {
-        // TODO Auto-generated method stub
-        return 0;
+        Objects.requireNonNull(s, "L'elemento avuto per argomento non deve essere nullo.");
+
+        elem.remove(s);
+        return multiplicity(s);
     }
 
     @Override
     public int size() {
-        // TODO Auto-generated method stub
-        return 0;
+        int cardinalita = 0;
+
+        for (String elemento : elem) {
+            cardinalita += multiplicity(elemento);
+        }
+
+        return cardinalita;
     }
 
     @Override
     public StringMultiset union(StringMultiset o) {
-        // TODO Auto-generated method stub
+        Objects.requireNonNull(o, "L'elemento avuto per argomento non deve essere nullo.");
+
         return null;
     }
 
