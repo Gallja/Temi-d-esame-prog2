@@ -84,17 +84,6 @@ public class ListMultiset implements StringMultiset {
     }
 
     @Override
-    public Set<String> get_supporto() {
-        final Set<String> ris = new HashSet<String>();
-
-        for (String elemento : elem) {
-            ris.add(elemento);
-        }
-
-        return ris;
-    }
-
-    @Override
     public int add(String s) {
         Objects.requireNonNull(s, "L'elemento avuto per argomento non deve essere nullo.");
 
@@ -158,8 +147,19 @@ public class ListMultiset implements StringMultiset {
     }
 
     @Override
+    public Set<String> get_supporto() {
+        final Set<String> ris = new HashSet<String>();
+
+        for (String elemento : elem) {
+            ris.add(elemento);
+        }
+
+        return ris;
+    }
+
+    @Override
     public Iterator<String> iterator() {
-        return elem.iterator();
+        return get_supporto().iterator();
     }
 
 }
