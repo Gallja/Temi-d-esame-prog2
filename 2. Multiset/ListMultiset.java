@@ -112,7 +112,8 @@ public class ListMultiset implements StringMultiset {
 
     @Override
     public StringMultiset intersection(StringMultiset o) {
-        // TODO Auto-generated method stub
+        Objects.requireNonNull(o, "L'elemento avuto per argomento non deve essere nullo.");
+
         return null;
     }
 
@@ -158,8 +159,7 @@ public class ListMultiset implements StringMultiset {
 
     @Override
     public Iterator<String> iterator() {
-        // TODO Auto-generated method stub
-        return null;
+        return elem.iterator();
     }
 
 }
