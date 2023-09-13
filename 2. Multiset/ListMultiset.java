@@ -157,9 +157,44 @@ public class ListMultiset implements StringMultiset {
         return ris;
     }
 
+    /**
+     * @Override
+     *           public Iterator<String> iterator() {
+     *           return get_supporto().iterator();
+     *           }
+     */
+
     @Override
     public Iterator<String> iterator() {
-        return get_supporto().iterator();
+        return new Iterator<String>() {
+            private int pos = 0;
+
+            private boolean duplicato(int index) {
+                for (int i = 0; i < index; i++) {
+                    if (elem.get(i) == elem.get(index)) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+            @Override
+            public boolean hasNext() {
+                while (pos < elem.size() && duplicato(pos)) {
+                    pos++;
+                }
+                if (pos == elem.size())
+                    return false;
+                return true;
+            }
+
+            @Override
+            public String next() {
+                pos++;
+                return elem.get(pos - 1);
+            }
+
+        };
     }
 
 }
