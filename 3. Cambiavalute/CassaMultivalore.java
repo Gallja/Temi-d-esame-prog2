@@ -163,5 +163,16 @@ public class CassaMultivalore implements Iterable <Importo> {
 
         };
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        for (Importo imp : importi) {
+            sb.append(imp.toString());
+        }
+
+        return sb.toString();
+    }
     
 }
