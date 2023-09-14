@@ -73,15 +73,23 @@ public class CassaMultivalore implements Iterable <Importo> {
     @Override
     public Iterator<Importo> iterator() {
         return new Iterator<Importo>() {
+            private int pos = 0;
 
             @Override
             public boolean hasNext() {
-                throw new UnsupportedOperationException("Unimplemented method 'hasNext'");
+                for (int i = pos; i < importi.size(); i ++) {
+                    if (importi.get(i).getValore() != 0) {
+                        return true;
+                    }
+                }
+
+                return false;
             }
 
             @Override
             public Importo next() {
-                throw new UnsupportedOperationException("Unimplemented method 'next'");
+                pos ++;
+                return importi.get(pos - 1);
             }
 
         };
