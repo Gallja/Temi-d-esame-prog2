@@ -39,10 +39,17 @@ public class CassaMultivalore implements Iterable <Importo> {
     }
 
     /**
+     * Ritorna un Importo all'interno di {@code this} in base all'indice {@code i} avuto per argomento.
      * 
+     * @param i l'indice dell'Importo che si intende ottenere.
+     * 
+     * @throws IllegalArgumentException nel caso in cui {@code i} fosse maggiore rispetto alla dimensione della lista di Importi.
      */
-    public ArrayList<Importo> getImporti() {
-        return importi;
+    public Importo getImporto(int i) {
+        if (i > importi.size()) 
+            throw new IllegalArgumentException();
+
+        return importi.get(i);
     }
 
     @Override
