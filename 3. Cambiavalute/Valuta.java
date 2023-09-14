@@ -70,8 +70,6 @@ public enum Valuta {
         return simbolo;
     }
 
-    
-
     @Override
     public String toString() {
         return "Valuta [nome = " + nome + ", simbolo = " + simbolo + "]";

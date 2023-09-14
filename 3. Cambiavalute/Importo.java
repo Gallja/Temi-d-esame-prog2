@@ -1,3 +1,5 @@
+import java.util.*;
+
 /**
  * OVERVIEW: Importo è una classe concreta che rappresenta un valore in denaro.
  * Le istanze di questa classe sono mutabili.
@@ -66,10 +68,10 @@ public class Importo {
     public void somma(Importo i) {
         Objects.requireNonNull(i, "L'Importo avuto per argomento non deve essere nullo.");
 
-        if (!i.getValuta.equals(valuta)) 
+        if (!i.getValuta().equals(valuta)) 
             throw new IllegalArgumentException("La Valuta dell'Importo avuto per argomento deve coincidere con quella di this.");
 
-        valore + i.getValore();
+        valore += i.getValore();
     }
 
     /**
@@ -84,10 +86,10 @@ public class Importo {
     public void sottrai(Importo i) {
         Objects.requireNonNull(i, "L'Importo avuto per argomento non deve essere nullo.");
 
-        if (!i.getValuta.equals(valuta)) 
+        if (!i.getValuta().equals(valuta)) 
             throw new IllegalArgumentException("La Valuta dell'Importo avuto per argomento deve coincidere con quella di this.");
 
-        valore - i.getValore();
+        valore -= i.getValore();
     }
 
     /**
@@ -107,7 +109,7 @@ public class Importo {
     public int confronta(Importo i) {
         Objects.requireNonNull(i, "L'Importo avuto per argomento non deve essere nullo.");
 
-        if (!i.getValuta.equals(valuta)) 
+        if (i.getValuta() != valuta) 
             throw new IllegalArgumentException("La Valuta dell'Importo avuto per argomento deve coincidere con quella di this.");
 
         if (valore > i.getValore()) {
