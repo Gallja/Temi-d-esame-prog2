@@ -1,7 +1,7 @@
 import java.util.*;
 
 /**
- * OVERVIEW: Importo è una classe concreta che rappresenta un valore in denaro.
+ * OVERVIEW: Importo è una classe concreta che rappresenta un valore in denaro con relativi metodi e comportamenti.
  * Le istanze di questa classe sono mutabili.
  */
 
