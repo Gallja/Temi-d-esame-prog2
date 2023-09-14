@@ -20,21 +20,33 @@ public class CassaMultivalore implements Iterable <Importo> {
     // COSTRUTTORE
 
     /**
-     * Costruisce un nuovo oggetto {@code this} a partire dalla lista {@code importi} avuta per argomento.
+     * Costruisce un nuovo oggetto {@code this} a partire dalla lista {@code importi_in} avuta per argomento.
      * 
      * @param importi la lista di importi
      * 
-     * @throws NullPointerException nel caso in cui {@code importi} fosse nulla.
+     * @throws NullPointerException nel caso in cui {@code importi_in} fosse nulla.
      * 
-     * @throws NullPointerException nel caso in cui un elemento di {@code importi} fosse nullo.
+     * @throws NullPointerException nel caso in cui un elemento di {@code importi_in} fosse nullo.
+     * 
+     * @throws IllegalArgumentException nel caso in cui {@code importi_in} contenesse una valuta duplicata.
      */
-    public CassaMultivalore(final ArrayList<Importo> importi) {
-        Objects.requireNonNull(importi, "La lista di importi avuta per argomento non deve essere nulla.");
+    public CassaMultivalore(final ArrayList<Importo> importi_in) {
+        Objects.requireNonNull(importi_in, "La lista di importi avuta per argomento non deve essere nulla.");
 
-        for (Importo i : importi) {
+        int cnt = 0;
+        for (Importo i : importi_in) {
             Objects.requireNonNull(i, "Tutti gli elementi della lista di importi avuta per argomento non devono essere nulli.");
 
+            if (cnt != 0) {
+                for (Importo i2 : importi) {
+                    if (i.getValuta() == i2.getValuta()) {
+                        throw new IllegalArgumentException("La lista di importi avuta per argomento non deve contenere valute duplicate.");
+                    }
+                }
+            }
+
             importi.add(i);
+            cnt ++;
         }
     }
 
@@ -50,6 +62,20 @@ public class CassaMultivalore implements Iterable <Importo> {
             throw new IllegalArgumentException();
 
         return importi.get(i);
+    }
+
+    /**
+     * Modifica {@code this} prelevando una quantità di importo {@code q} avuta per argometo.
+     */
+    public void preleva() {
+
+    }
+
+    /**
+     * 
+     */
+    public void versa() {
+
     }
 
     @Override
