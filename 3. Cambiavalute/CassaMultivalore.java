@@ -65,17 +65,53 @@ public class CassaMultivalore implements Iterable <Importo> {
     }
 
     /**
-     * Modifica {@code this} prelevando una quantità di importo {@code q} avuta per argometo.
+     * Modifica {@code this} prelevando un importo {@code i} avuto per argometo.
+     * 
+     * @param i l'Importo che si intende prelevare dalla Cassa.
+     * 
+     * @throws NullPointerException nel caso in cui {@code i} fosse nullo.
+     * 
+     * @throws IllegalArgumentException nel caso in cui la valuta di {@code i} non fosse presente all'interno di {@code this}.
      */
-    public void preleva() {
+    public void preleva(Importo i) {
+        Objects.requireNonNull(i, "L'importo avuto per argomento non deve essere nullo.");
 
+        boolean flag = false; 
+
+        for (Importo imp : importi) {
+            if (i.getValuta() == imp.getValuta()) {
+                flag = true;
+                imp.sottrai(i);
+            }
+        }
+
+        if (flag)
+            throw new IllegalArgumentException("L'importo avuto per argomento corrisponde ad una valuta non presente fra gli importi della Cassa."); 
     }
 
     /**
+     * Modifica {@code this} versando un importo {@code i} avuto per argometo.
      * 
+     * @param i l'Importo che si intende versare dalla Cassa.
+     * 
+     * @throws NullPointerException nel caso in cui {@code i} fosse nullo.
+     * 
+     * @throws IllegalArgumentException nel caso in cui la valuta di {@code i} non fosse presente all'interno di {@code this}.
      */
-    public void versa() {
+    public void versa(Importo i) {
+        Objects.requireNonNull(i, "L'importo avuto per argomento non deve essere nullo.");
 
+        boolean flag = false; 
+
+        for (Importo imp : importi) {
+            if (i.getValuta() == imp.getValuta()) {
+                flag = true;
+                imp.somma(i);
+            }
+        }
+
+        if (flag)
+            throw new IllegalArgumentException("L'importo avuto per argomento corrisponde ad una valuta non presente fra gli importi della Cassa."); 
     }
 
     @Override

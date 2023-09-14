@@ -68,7 +68,7 @@ public class Importo {
     public void somma(Importo i) {
         Objects.requireNonNull(i, "L'Importo avuto per argomento non deve essere nullo.");
 
-        if (!i.getValuta().equals(valuta)) 
+        if (!(i.getValuta() == valuta)) 
             throw new IllegalArgumentException("La Valuta dell'Importo avuto per argomento deve coincidere con quella di this.");
 
         valore += i.getValore();
@@ -86,7 +86,7 @@ public class Importo {
     public void sottrai(Importo i) {
         Objects.requireNonNull(i, "L'Importo avuto per argomento non deve essere nullo.");
 
-        if (!i.getValuta().equals(valuta)) 
+        if (!(i.getValuta() == valuta)) 
             throw new IllegalArgumentException("La Valuta dell'Importo avuto per argomento deve coincidere con quella di this.");
 
         valore -= i.getValore();
