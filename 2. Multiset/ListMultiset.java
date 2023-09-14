@@ -143,7 +143,26 @@ public class ListMultiset implements StringMultiset {
     public StringMultiset union(StringMultiset o) {
         Objects.requireNonNull(o, "L'elemento avuto per argomento non deve essere nullo.");
 
-        return null;
+        ListMultiset backup = new ListMultiset(elem);
+
+        Set<String> supporto1 = o.get_supporto();
+        Set<String> supporto2 = backup.get_supporto();
+
+        supporto1.addAll(supporto2);
+
+        ArrayList<String> ris1 = new ArrayList<String>();
+
+        Iterator<String> iterator = o.iterator();
+
+        while (iterator.hasNext()) {
+            String elemento = iterator.next();
+
+            ris1.add(elemento);
+        }
+
+        StringMultiset ris_finale = new ListMultiset(ris1);
+
+        return ris_finale;
     }
 
     @Override
