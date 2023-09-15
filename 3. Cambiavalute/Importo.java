@@ -94,10 +94,10 @@ public class Importo {
 
     /**
      * Confronta {@code this} con l'Importo {@code i} avuto per argomento.
-     * Restituisce inoltre un valore intero, in base al risultato del confronto, con la seguente codifica:
-     * 1 --> {@code this} è maggiore di {@code i}
-     * 0 --> {@code this} e {@code i} sono uguali
-     * -1 --> {@code this} è minore di {@code i}
+     * Restituisce inoltre un valore intero, in base al risultato del confronto, con la seguente codifica: <br /><br />
+     * 1 --> {@code this} è maggiore di {@code i} <br /><br />
+     * 0 --> {@code this} e {@code i} sono uguali <br /><br />
+     * -1 --> {@code this} è minore di {@code i} <br /><br />
      * 
      * @param i l'importo che si intende sottrarre a {@code this}
      * 
