@@ -13,7 +13,7 @@ public class Locomotore extends Rotabile {
 
     // ATTRIBUTI
     /** La potenza del Locomotore */
-    private int potenza;
+    private final int potenza;
 
     // COSTRUTTORE
 

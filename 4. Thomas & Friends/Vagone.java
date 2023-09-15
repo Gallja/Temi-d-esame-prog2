@@ -16,7 +16,7 @@ public class Vagone extends Rotabile {
 
     // ATTRIBUTI
     /** La lista contenente le dotazioni del Vagone */
-    private ArrayList<Dotazione> dotazioni = new ArrayList<Dotazione>();
+    private List<Dotazione> dotazioni = new ArrayList<Dotazione>();
 
     // COSTRUTTORE
 
@@ -30,7 +30,7 @@ public class Vagone extends Rotabile {
      * @throws NullPointerException nel caso in cui {@code dotazioni_in} fosse nullo.
      * @throws NullPointerException nel caso in cui un elemento di {@code dotazioni_in} fosse nullo.
      */
-    public Vagone(String modello, int peso, ArrayList<Dotazione> dotazioni_in) {
+    public Vagone(String modello, int peso, List<Dotazione> dotazioni_in) {
         super(modello, peso);
         
         Objects.requireNonNull(dotazioni_in, "La lista di dotazioni avuta per argomento non deve essere nulla.");
@@ -68,8 +68,8 @@ public class Vagone extends Rotabile {
      * 
      * @return le dotazioni di {@code this}.
      */
-    public ArrayList<Dotazione> getDotazioni() {
-        return dotazioni;
+    public List<Dotazione> getDotazioni() {
+        return Collections.unmodifiableList(dotazioni);
     }
 
     @Override

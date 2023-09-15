@@ -18,8 +18,8 @@ public abstract class Rotabile {
 
     // ATTRIBUTI
     /** Il modello del Rotabile ed il relativo peso */
-    private String modello;
-    private int peso;
+    private final String modello;
+    private final int peso;
 
     // COSTRUTTORE
 

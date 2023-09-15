@@ -22,8 +22,8 @@ public class Convoglio implements Iterable<Vagone> {
     // ATTRIBUTI
     /** La lista contenente i Locomotori del Convoglio e la lista contenente i Vagoni del Convoglio */
     private String nomeConvoglio;
-    private ArrayList<Locomotore> locomotori = new ArrayList<Locomotore>();
-    private ArrayList<Vagone> vagoni = new ArrayList<Vagone>();
+    private List<Locomotore> locomotori = new ArrayList<Locomotore>();
+    private List<Vagone> vagoni = new ArrayList<Vagone>();
 
     // COSTRUTTORE
 
@@ -41,7 +41,7 @@ public class Convoglio implements Iterable<Vagone> {
      * @throws NullPointerException nel caso in cui {@code vagoni_in} contenesse un valore nullo.
      * @throws IllegalArgumentException nel caso in cui {@code locomotori_in} fosse maggiore di 2.
      */
-    public Convoglio(final String nomeConvoglio, final ArrayList<Locomotore> locomotori_in, final ArrayList<Vagone> vagoni_in) {
+    public Convoglio(final String nomeConvoglio, final List<Locomotore> locomotori_in, final List<Vagone> vagoni_in) {
         Objects.requireNonNull(locomotori_in, "La lista di locomotori avuta per argomento non deve essere nulla.");
 
         Objects.requireNonNull(vagoni_in, "La lista di vagoni avuta per argomento non deve essere nulla.");
@@ -114,7 +114,7 @@ public class Convoglio implements Iterable<Vagone> {
      * 
      * @return I Locomotori di {@code this}.
      */
-    public ArrayList<Locomotore> getLocomotori() {
+    public List<Locomotore> getLocomotori() {
         return locomotori;
     }
 
@@ -123,7 +123,7 @@ public class Convoglio implements Iterable<Vagone> {
      * 
      * @return I Vagoni di {@code this}.
      */
-    public ArrayList<Vagone> getVagoni() {
+    public List<Vagone> getVagoni() {
         return vagoni;
     }
 
