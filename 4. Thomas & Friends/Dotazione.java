@@ -1,3 +1,5 @@
+import java.util.*;
+
 /**
  * OVERVIEW: Dotazione è una classe concreta atta a rappresentare le dotazioni di cui è composto il vagone di un treno.
  * Una Dotazione è rappresentata dal suo nome e la relativa quantità.
