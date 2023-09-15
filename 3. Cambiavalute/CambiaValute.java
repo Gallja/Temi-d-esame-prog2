@@ -6,7 +6,7 @@ import java.util.*;
  * Le istanze di questa classe sono mutabili.
  */
 
-public class CambiaValute {
+public class CambiaValute implements Iterable<TassoDiCambio> {
     /**
      * IR: La CassaMultivalore non deve essere nulla.
      * La lista di tassi di cambio non deve essere nulla.
@@ -49,9 +49,77 @@ public class CambiaValute {
     // METODI
 
     /**
-     * Effettua un cambio a partire 
+     * Aggiorna un Tasso di Cambio in base all'indice {@code index} e agli Importi {@code importo1} ed {@code importo2} forniti per argomento.
+     * 
+     * @param index la posizione del Tasso da aggiornare
+     * @param importo1 Il primo Importo 
+     * @param importo2 Il secondo Importo
+     * 
+     * @throws NullPointerException nel caso in cui {@code importo1} fosse nullo.
+     * @throws NullPoinerException nel caso in cui {@code importo2} fosse nullo.
+     * @throws IllegalArgumentException nel caso in cui {@code index} non fosse positivo.
+     * @throws IllegalArgumentException nel caso in cui {@code index} fosse maggiore della dimensione della lista di Tassi di Cambio.
+     * @throws IllegalArgumentException nel caso in cui {@code importo1} e {@code importo2} avessero la stessa valuta.
+     * @throws IllegalArgumentException nel caso in cui {@code importo1} o {@code importo2} avessero una valuta differente rispetto a quella della lista all'indice {@code index} avuto per argomento.
      */
-    public void cambio() {
+    public void aggiornaTasso(int index, Importo importo1, Importo importo2) {
+        Objects.requireNonNull(importo1, "Il primo Importo non deve essere nullo.");
+        Objects.requireNonNull(importo2, "Il secondo Importo non deve essere nullo.");
 
+        if (index < 0)
+            throw new IllegalArgumentException("L'indice della lista avuto per argomento deve obbligatoriamente essere positivo.");
+        
+        if (index > tassi.size())
+            throw new IllegalArgumentException("L'indice della lista avuto per argomento è maggiore rispetto alla dimensione della lista di Tassi.");
+
+        if (importo1.getValuta() == importo2.getValuta())
+            throw new IllegalArgumentException("Le valute dei 2 importi devono obbligatoriamente essere diverse.");
+        
+        if (tassi.get(index).getImporto1().getValuta() != importo1.getValuta() || tassi.get(index).getImporto2().getValuta() != importo2.getValuta())
+            throw new IllegalArgumentException("");
+
+        TassoDiCambio ris = new TassoDiCambio(importo1, importo2);
+        tassi.remove(index);
+        tassi.add(ris);
+    }
+
+    /**
+     * Aggiugne un nuovo Tasso di Cambio a {@code this} a partire dagli importi {@code importo1} ed {@code importo2} avuti per argomento.
+     * 
+     * @param importo1 Il primo Importo del Tasso da aggiungere.
+     * @param importo2 Il secondo Importo del Tasso da aggiungere.
+     * 
+     * @throws NullPointerException nel caso in cui {@code importo1} fosse nullo.
+     * @throws NullPointerException nel caso in cui {@code importo2} fosse nullo.
+     * @throws IllegalArgumentException nel caso in cui il Tasso di Cambio che si intende inserire tramite {@code importo1} e {@code importo2} fosse già presente in {@code this}.
+     */
+    public void aggiugniTasso(Importo importo1, Importo importo2) {
+        Objects.requireNonNull(importo1, "Il primo Importo non deve essere nullo.");
+        Objects.requireNonNull(importo2, "Il secondo Importo non deve essere nullo.");
+
+        for (TassoDiCambio t : tassi) {
+            if (t.getImporto1().getValuta() == importo1.getValuta() || t.getImporto2().getValuta() == importo2.getValuta())
+                throw new IllegalArgumentException("Il Tasso di Cambio che si desidera inserire è già presente.");
+        }
+
+        TassoDiCambio ris = new TassoDiCambio(importo1, importo2);
+        tassi.add(ris);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(cassa.toString()).append("\n");
+        for (TassoDiCambio t : tassi) {
+            sb.append(t.toString()).append("\n");
+        }
+
+        return sb.toString();
+    }
+
+    @Override
+    public Iterator<TassoDiCambio> iterator() {
+        return tassi.iterator();
     }
 }
