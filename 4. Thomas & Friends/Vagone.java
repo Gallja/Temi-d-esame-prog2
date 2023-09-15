@@ -16,7 +16,7 @@ public class Vagone extends Rotabile {
 
     // ATTRIBUTI
     /** La lista contenente le dotazioni del Vagone */
-    ArrayList<Dotazione> dotazioni = new ArrayList<Dotazione>();
+    private ArrayList<Dotazione> dotazioni = new ArrayList<Dotazione>();
 
     // COSTRUTTORE
 
