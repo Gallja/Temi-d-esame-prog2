@@ -18,8 +18,8 @@ public class Dotazione {
 
     // ATTRIBUTI
     /** Il nome della Dotazione e la relativa quantità all'interno del vagone */
-    public String nome;
-    public int quantita;
+    public final String nome;
+    public final int quantita;
 
     // COSTRUTTORE
 
