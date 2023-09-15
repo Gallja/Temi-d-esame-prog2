@@ -37,16 +37,6 @@ public class Locomotore extends Rotabile {
 
     // METODI
 
-    @Override
-    public String getModello() {
-        return super.getModello();
-    }
-
-    @Override
-    public int getPeso() {
-        return super.getPeso();
-    }
-
     /**
      * Restituisce il valore della potenza di {@code this}.
      * 
