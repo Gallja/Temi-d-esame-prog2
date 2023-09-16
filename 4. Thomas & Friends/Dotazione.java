@@ -1,12 +1,13 @@
 import java.util.*;
 
 /**
- * OVERVIEW: Dotazione è una classe concreta atta a rappresentare le dotazioni di cui è composto il vagone di un treno.
+ * OVERVIEW: Dotazione è una classe concreta atta a rappresentare le dotazioni
+ * di cui è composto il vagone di un treno.
  * Una Dotazione è rappresentata dal suo nome e la relativa quantità.
  * Le istanze di questa classe sono immutabili.
  */
 
-public class Dotazione {
+public class Dotazione implements Comparable<Dotazione> {
     /**
      * IR: Il nome della Dotazione non deve essere nullo.
      * Il nome della Dotazione non deve essere vuoto.
@@ -24,21 +25,25 @@ public class Dotazione {
     // COSTRUTTORE
 
     /**
-     * Costruisce un nuovo oggetto {@code this} a partire dal {@code nome} e la relativa {@code quantita} avuti per argomento.
+     * Costruisce un nuovo oggetto {@code this} a partire dal {@code nome} e la
+     * relativa {@code quantita} avuti per argomento.
      * 
-     * @param nome Il nome della {@code this}
+     * @param nome     Il nome della {@code this}
      * @param quantita La quantità di {@code this}
      * 
-     * @throws NullPointerException nel caso in cui {@code nome} fosse nullo.
+     * @throws NullPointerException     nel caso in cui {@code nome} fosse nullo.
      * @throws IllegalArgumentException nel caso in cui {@code nome} fosse vuoto.
-     * @throws IllegalArgumentException nel caso in cui {@code quantita} non fosse positivo.
+     * @throws IllegalArgumentException nel caso in cui {@code quantita} non fosse
+     *                                  positivo.
      */
     public Dotazione(final String nome, final int quantita) {
         Objects.requireNonNull(nome, "Il nome della Dotazione avuto per argmento non deve essere nullo.");
 
-        if (nome.isEmpty()) throw new IllegalArgumentException("Il nome avuto per argomento non deve essere vuoto.");
+        if (nome.isEmpty())
+            throw new IllegalArgumentException("Il nome avuto per argomento non deve essere vuoto.");
 
-        if (quantita <= 0) throw new IllegalArgumentException("La quantita avuta per argomento deve essere positiva.");
+        if (quantita <= 0)
+            throw new IllegalArgumentException("La quantita avuta per argomento deve essere positiva.");
 
         this.nome = nome;
         this.quantita = quantita;
@@ -67,11 +72,11 @@ public class Dotazione {
     @Override
     public int hashCode() {
         /*
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-        return result;
-        */
+         * final int prime = 31;
+         * int result = 1;
+         * result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+         * return result;
+         */
         return Objects.hash(this.nome);
     }
 
@@ -90,6 +95,11 @@ public class Dotazione {
         } else if (!nome.equals(other.nome))
             return false;
         return true;
+    }
+
+    @Override
+    public int compareTo(Dotazione o) {
+        return this.nome.compareTo(o.nome);
     }
 
     @Override
