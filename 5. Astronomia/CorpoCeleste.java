@@ -99,4 +99,10 @@ public abstract class CorpoCeleste {
      * @param c Il corpo celeste con cui viene modificata la velocità di {@code this}
      */
     public abstract void attrazione(CorpoCeleste c);
+
+    @Override
+    public String toString() {
+        return "CorpoCeleste [nome=" + nome + ", pos=" + pos + "]";
+    }
+    
 }
