@@ -34,6 +34,15 @@ public class PuntoTreDimensioni {
         this.z = z;
     }
 
+    /**
+     * Costruisce una copia di {@code PuntoTreDimensioni}.
+     * 
+     * @param altro_punto Il {@code PuntoTreDimensioni} dal quale si vuole costruire la copia
+     */
+    public PuntoTreDimensioni(PuntoTreDimensioni altro_punto) {
+        this(altro_punto.x, altro_punto.y, altro_punto.z);
+    }
+
     // METODI
 
     /**
