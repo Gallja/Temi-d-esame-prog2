@@ -6,7 +6,7 @@ import java.util.*;
  * Le istanze di questa classe sono mutabili.
  */
 
-public class SistemaAstronomico {
+public class SistemaAstronomico implements Iterable<CorpoCeleste> {
     /**
      * IR: La lista di corpi celesti facenti parte del sistema astronomico non deve essere null.
      * Ogni elemento della lista di corpi celesti non deve essere null.
@@ -54,6 +54,11 @@ public class SistemaAstronomico {
         }
 
         return tot;
+    }
+
+    @Override
+    public Iterator<CorpoCeleste> iterator() {
+        return corpi.iterator();
     }
 
     @Override
