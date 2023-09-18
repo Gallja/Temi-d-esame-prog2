@@ -5,12 +5,6 @@
  */
 
 public class StellaFissa extends CorpoCeleste {
-    /**
-     * IR: 
-     * 
-     * AF: 
-     */
-
     // COSTRUTTORE
 
     /**
