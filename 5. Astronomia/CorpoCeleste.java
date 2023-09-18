@@ -94,29 +94,9 @@ public abstract class CorpoCeleste {
     }
 
     /**
-     * Modifica {@code this} cambiandone la posizione della coordinata {@code x} avuta per argomento.
+     * Modifica la velocità di {@code this} in funzione dell'attrazione verso tutti gli altri corpi celesti.
      * 
-     * @param x Il valore della nuova coordinata x di {@code this}
+     * @param c Il corpo celeste con cui viene modificata la velocità di {@code this}
      */
-    public void modCoordinataX(final int x) {
-        this.pos.setX(x);
-    }
-
-    /**
-     * Modifica {@code this} cambiandone la posizione della coordinata {@code y} avuta per argomento.
-     * 
-     * @param y Il valore della nuova coordinata x di {@code this}
-     */
-    public void modCoordinataY(final int y) {
-        this.pos.setY(y);
-    }
-
-    /**
-     * Modifica {@code this} cambiandone la posizione della coordinata {@code z} avuta per argomento.
-     * 
-     * @param x Il valore della nuova coordinata z di {@code this}
-     */
-    public void modCoordinataZ(final int z) {
-        this.pos.setZ(z);
-    }
+    public abstract void attrazione(CorpoCeleste c);
 }
