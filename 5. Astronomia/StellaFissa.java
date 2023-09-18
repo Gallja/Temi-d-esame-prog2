@@ -1,5 +1,5 @@
 /**
- * OVERVIEW: StellaFissa è una classe concreta che estende stato e comportamenti di un generico corpo celeste.
+ * OVERVIEW: StellaFissa è una classe concreta che implementa stato e comportamenti di un generico corpo celeste.
  * Ogni stella fissa è caratterizzata dal nome e dalla posizione.
  * Le istanze di questa classe sono immutabili.
  */
