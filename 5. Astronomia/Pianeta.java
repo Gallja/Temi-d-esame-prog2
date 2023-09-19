@@ -82,10 +82,7 @@ public class Pianeta extends CorpoCeleste {
         }
     }
     
-    /**
-     * Modifica la velocità di {@code this} solo dopo gli effetti causati dall' {@code attrazione}.
-     *
-     */
+    @Override
     public void modPos() {
         int x = this.getPos().getX();
         int y = this.getPos().getY();

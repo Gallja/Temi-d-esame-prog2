@@ -75,10 +75,28 @@ public class SistemaAstronomico implements Iterable<CorpoCeleste> {
      * 
      * @throws NullPointerException Se {@code corpo} è null.
      */
-    public void setCorpi(CorpoCeleste corpo) {
+    public void setCorpo(CorpoCeleste corpo) {
         Objects.requireNonNull(corpo, "Il corpo avuto per argomento non deve essere null.");
 
         corpi.add(corpo);
+    }
+
+    /**
+     * Modifica {@code this} facendo interagire fra di loro i corpi celesti che ne fanno parte.
+     * L'interazione tra corpi celesti consiste nella modifica della velocità, e solo dopo anche della posizione, di un corpo c con tutti gli altri.
+     *
+     */
+    public void interazionePianeti() {
+        for (int i = 0; i < corpi.size(); i++) {
+            for (int j = 0; j < corpi.size(); j++) {
+                if (i == j) continue;
+                corpi.get(i).attrazione(corpi.get(j));
+            }
+        }
+
+        for (int i = 0; i < corpi.size(); i++) {
+            corpi.get(i).modPos();
+        }
     }
 
     /**

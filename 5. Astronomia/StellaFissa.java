@@ -18,11 +18,17 @@ public class StellaFissa extends CorpoCeleste {
     }
 
     // METODI
-    
+
     @Override
     public void attrazione(CorpoCeleste c) {
         return;
     }
+
+    @Override
+    public void modPos() {
+        return;
+    }
+
 
     @Override
     public String toString() {

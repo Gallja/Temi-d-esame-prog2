@@ -100,6 +100,12 @@ public abstract class CorpoCeleste {
      */
     public abstract void attrazione(CorpoCeleste c);
 
+    /**
+     * Modifica la velocità di {@code this} solo dopo gli effetti causati dall' {@code attrazione}.
+     *
+     */
+    public abstract void modPos();
+
     @Override
     public String toString() {
         return nome + ", pos: " + pos + "]";
