@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -80,7 +81,7 @@ public class Pavimentazione implements Rivestimento, Iterable<Pavimentazione.Com
 
     // ATTRIBUTI
     /** La collezione di componenti che compongono la Pavimentazione */
-    private final Collection<Componente> componenti;
+    private final Collection<Componente> componenti = new ArrayList<>();
 
     // COSTRUTTORE
 
@@ -96,13 +97,15 @@ public class Pavimentazione implements Rivestimento, Iterable<Pavimentazione.Com
      *                                  avuta
      *                                  per argomento fosse vuota.
      */
-    public Pavimentazione(final Collection<Componente> componenti) {
-        Objects.requireNonNull(componenti, "La collezione di componenti fornita per argomento non deve essere nulla.");
+    public Pavimentazione(final Collection<Componente> componenti_in) {
+        Objects.requireNonNull(componenti_in, "La collezione di componenti fornita per argomento non deve essere nulla.");
 
-        if (componenti.isEmpty())
+        if (componenti_in.isEmpty())
             throw new IllegalArgumentException("La collezione di componenti non deve essere vuota.");
 
-        this.componenti = List.copyOf(componenti);
+        for (Componente c : componenti_in) {
+            componenti.add(c);
+        }
     }
 
     // METODI
