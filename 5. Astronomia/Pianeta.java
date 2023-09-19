@@ -64,30 +64,36 @@ public class Pianeta extends CorpoCeleste {
         int z = this.getPos().getZ();
 
         if (x > c.getPos().getX()) {
-            this.vel.setX(vel.getX() + 1);
-        } else if (x < c.getPos().getX()) {
             this.vel.setX(vel.getX() - 1);
+        } else if (x < c.getPos().getX()) {
+            this.vel.setX(vel.getX() + 1);
         }
 
         if (y > c.getPos().getY()) {
-            this.vel.setY(vel.getY() + 1);
-        } else if (y < c.getPos().getY()) {
             this.vel.setY(vel.getY() - 1);
+        } else if (y < c.getPos().getY()) {
+            this.vel.setY(vel.getY() + 1);
         }
 
         if (z > c.getPos().getZ()) {
-            this.vel.setZ(vel.getZ() + 1);
-        } else if (z < c.getPos().getZ()) {
             this.vel.setZ(vel.getZ() - 1);
+        } else if (z < c.getPos().getZ()) {
+            this.vel.setZ(vel.getZ() + 1);
         }
     }
     
     /**
-     * Modifica la velocità di {@code this} in base agli effetti causati dall' {@code attrazione}.
+     * Modifica la velocità di {@code this} solo dopo gli effetti causati dall' {@code attrazione}.
      *
      */
-    public void modVelocita() {
-        
+    public void modPos() {
+        int x = this.getPos().getX();
+        int y = this.getPos().getY();
+        int z = this.getPos().getZ();
+
+        this.getPos().setX(x + this.vel.getX());
+        this.getPos().setY(y + this.vel.getY());
+        this.getPos().setZ(z + this.vel.getZ());
     }
     
 
