@@ -49,6 +49,25 @@ public class SistemaAstronomico implements Iterable<CorpoCeleste> {
         return Collections.unmodifiableList(corpi);
     }
 
+
+    /**
+     * Restituisce il corpo celeste di {@code this} alla posizione {@code i} avuta per argomento.
+     * 
+     * @param i La posizione del corpo celeste di {@code this} che si intende ottenere.
+     * 
+     * @return Il corpo celeste desiderato di {@code this}.
+     * 
+     * @throws IllegalArgumentException se i è < 0.
+     * @throws IllegalArgumentException se i è maggiore della dimensione di {@code this}.
+     */
+    public CorpoCeleste getCorpo(final int i) {
+        if (i < 0) throw new IllegalArgumentException("La posizione avuta per argomento deve essere >= 0.");
+
+        if (i > corpi.size()) throw new IllegalArgumentException("La posizione avuta per argomento non deve essere > della dimensione del sistema astronomico.");
+
+        return corpi.get(i);
+    }
+
     /**
      * Aggiunge un corpo celeste {@code corpo} a {@code this}.
      * 
