@@ -48,18 +48,48 @@ public class Pianeta extends CorpoCeleste {
         return energiaCinetica() * super.energiaPotenziale();
     }
 
+    /**
+     * Restituisce un valore tridimensionale corrispondente alla velocità di {@code this}.
+     * 
+     * @return La velocità di {@code this}
+     */
+    public PuntoTreDimensioni getVel() {
+        return vel;
+    }
+
     @Override
     public void attrazione(CorpoCeleste c) {
-        if (this.getPos().getX() > c.getPos().getX()) {
-            this.getPos().setX(this.getPos().getX() + 1);
-        } else {
-            if (this.getPos().getX() < c.getPos().getX()) {
-                this.getPos().setX(this.getPos().getX() - 1);
-            } else {
-                return;
-            }
+        int x = this.getPos().getX();
+        int y = this.getPos().getY();
+        int z = this.getPos().getZ();
+
+        if (x > c.getPos().getX()) {
+            this.vel.setX(vel.getX() + 1);
+        } else if (x < c.getPos().getX()) {
+            this.vel.setX(vel.getX() - 1);
+        }
+
+        if (y > c.getPos().getY()) {
+            this.vel.setY(vel.getY() + 1);
+        } else if (y < c.getPos().getY()) {
+            this.vel.setY(vel.getY() - 1);
+        }
+
+        if (z > c.getPos().getZ()) {
+            this.vel.setZ(vel.getZ() + 1);
+        } else if (z < c.getPos().getZ()) {
+            this.vel.setZ(vel.getZ() - 1);
         }
     }
+    
+    /**
+     * Modifica la velocità di {@code this} in base agli effetti causati dall' {@code attrazione}.
+     *
+     */
+    public void modVelocita() {
+        
+    }
+    
 
     @Override
     public String toString() {
