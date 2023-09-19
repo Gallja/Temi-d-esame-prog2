@@ -1,3 +1,4 @@
+package Codes;
 /**
  * OVERVIEW: StellaFissa è una classe concreta che implementa stato e comportamenti di un generico corpo celeste.
  * Ogni stella fissa è caratterizzata dal nome e dalla posizione.

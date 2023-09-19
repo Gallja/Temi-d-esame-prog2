@@ -1,3 +1,4 @@
+package Codes;
 /**
  * OVERVIEW: PuntoTreDimensioni è una classe concreta che rappresenta il concetto matematico-geometrico di un punto di 3 dimensioni.
  * Ogni punto tridimensionale è caratterizzato da 3 coordinate x, y e z.
