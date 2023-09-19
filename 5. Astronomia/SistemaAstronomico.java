@@ -41,6 +41,28 @@ public class SistemaAstronomico implements Iterable<CorpoCeleste> {
     // METODI
 
     /**
+     * Restituisce i corpi celesti facenti parte di {@code this}.
+     * 
+     * @return I corpi celesti di {@code this}
+     */
+    public List<CorpoCeleste> getCorpi() {
+        return Collections.unmodifiableList(corpi);
+    }
+
+    /**
+     * Aggiunge un corpo celeste {@code corpo} a {@code this}.
+     * 
+     * @param corpo Il corpo celeste da aggiungere a {@code this}.
+     * 
+     * @throws NullPointerException Se {@code corpo} è null.
+     */
+    public void setCorpi(CorpoCeleste corpo) {
+        Objects.requireNonNull(corpo, "Il corpo avuto per argomento non deve essere null.");
+
+        corpi.add(corpo);
+    }
+
+    /**
      * Restituisce un valore corrispondente all'energia totale di {@code this}. <br/><br/>
      * L'energia totale è pari alla somma di tutte le energie dei corpi celesti di {@code this}.
      * 
@@ -73,4 +95,5 @@ public class SistemaAstronomico implements Iterable<CorpoCeleste> {
 
         return sb.toString();
     }
+
 }
