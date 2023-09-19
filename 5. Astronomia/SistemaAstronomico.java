@@ -10,7 +10,7 @@ public class SistemaAstronomico implements Iterable<CorpoCeleste> {
     /**
      * IR: La lista di corpi celesti facenti parte del sistema astronomico non deve essere null.
      * Ogni elemento della lista di corpi celesti non deve essere null.
-     * 
+     * X
      * AF: corpi : la lista contenente i corpi celesti del sistema astronomico.
      */
 
@@ -63,6 +63,14 @@ public class SistemaAstronomico implements Iterable<CorpoCeleste> {
 
     @Override
     public String toString() {
-        return "SistemaAstronomico [corpi=" + corpi + "]" + energiaTot();
+        StringBuilder sb = new StringBuilder();
+
+        for (CorpoCeleste c : corpi) {
+            sb.append(c.toString()).append("\n");
+        }
+
+        sb.append(energiaTot());
+
+        return sb.toString();
     }
 }

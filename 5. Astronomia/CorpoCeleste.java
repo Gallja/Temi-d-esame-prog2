@@ -102,7 +102,7 @@ public abstract class CorpoCeleste {
 
     @Override
     public String toString() {
-        return "CorpoCeleste [nome=" + nome + ", pos=" + pos + "]";
+        return nome + ", pos: " + pos + "]";
     }
     
 }

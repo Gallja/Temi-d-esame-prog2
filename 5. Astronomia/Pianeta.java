@@ -99,6 +99,6 @@ public class Pianeta extends CorpoCeleste {
 
     @Override
     public String toString() {
-        return "Pianeta" + super.toString() + "[vel=" + vel + "]";
+        return "Pianeta, " + super.toString() + ", vel: " + vel;
     }
 }

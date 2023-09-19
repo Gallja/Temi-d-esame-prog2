@@ -26,6 +26,6 @@ public class StellaFissa extends CorpoCeleste {
 
     @Override
     public String toString() {
-        return "StellaFissa ["+ super.toString() +"]";
+        return "StellaFissa, " + super.toString() +"]";
     }
 }

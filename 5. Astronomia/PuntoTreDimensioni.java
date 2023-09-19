@@ -101,6 +101,6 @@ public class PuntoTreDimensioni {
 
     @Override
     public String toString() {
-        return "PuntoTreDimensioni [x=" + x + ", y=" + y + ", z=" + z + "]";
+        return "(" + x + ", " + y + ", " + z + ")";
     }
 }
