@@ -115,7 +115,7 @@ public class Convoglio implements Iterable<Vagone> {
      * @return I Locomotori di {@code this}.
      */
     public List<Locomotore> getLocomotori() {
-        return locomotori;
+        return Collections.unmodifiableList(locomotori);
     }
 
     /**
@@ -124,7 +124,7 @@ public class Convoglio implements Iterable<Vagone> {
      * @return I Vagoni di {@code this}.
      */
     public List<Vagone> getVagoni() {
-        return vagoni;
+        return Collections.unmodifiableList(vagoni);
     }
 
     /**
