@@ -115,4 +115,9 @@ public class Rete {
 
         return false;
     }
+
+    @Override
+    public String toString() {
+        return "Rete [utenti=" + utenti + ", conversazioni=" + conversazioni + "]";
+    }
 }
