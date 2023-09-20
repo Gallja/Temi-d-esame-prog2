@@ -156,6 +156,24 @@ public class Utente implements Iterable<Conversazione> {
         return true;
     }
 
+    /**
+     * Restituisce una lista contenente i nomi degli interlocutori di {@code this}.
+     * 
+     * @return La lista dei nomi degli interlocutori di {@code this}.
+     */
+    public List<String> getInterlocutori() {
+        List<String> listRis = new ArrayList<String>();
+
+        for (Conversazione c : conversazioni) {
+            List<Messaggio> mess = c.getMessaggi();
+            for (Messaggio m : mess) {
+                listRis.add(m.getDestinatario());
+            }
+        }
+
+        return Collections.unmodifiableList(listRis);
+    }
+
     @Override
     public String toString() {
         return username;
