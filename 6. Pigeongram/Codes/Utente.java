@@ -6,7 +6,7 @@ import java.util.*;
  * Le istanze di questa classe sono mutabili.
  */
 
-public class Utente {
+public class Utente implements Iterable<Conversazione> {
     /**
      * IR: username non deve essere null.
      * username non deve essere vuoto.
@@ -159,5 +159,10 @@ public class Utente {
     @Override
     public String toString() {
         return username;
+    }
+
+    @Override
+    public Iterator<Conversazione> iterator() {
+        return conversazioni.iterator();
     }
 }
