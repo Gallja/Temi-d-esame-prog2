@@ -102,6 +102,54 @@ public class Conversazione implements Iterable<Messaggio> {
         return mess.getMittente();
     }
 
+    /**
+     * Restituisce una lista contenente il contenuto dei messaggi inviati nella Conversazione {@code this} dell'utente {@code u} avuto per argomento.
+     * 
+     * @param u L'utente di cui si vogliono sapere i messaggi inviati.
+     *
+     * @return La lista di messaggi inviati da {@code u}.
+     * 
+     * @throws NullPointerException Se {@code u} è null.
+     * @throws IllegalArgumentException Se {@code u} non coincide con il mittente di {@code this}.
+     */
+    public List<Contenuto> getInviati(final Utente u) {
+        Objects.requireNonNull(u, "L'utente avuto per argomento non deve essere null.");
+
+        if (!u.getUsername().equals(this.getMittente())) throw new IllegalArgumentException("L'utente avuto per argomento non coincide con il mittente di questa conversazione.");
+
+        List<Contenuto> ris = new ArrayList<Contenuto>();
+
+        for (Messaggio m : messaggi) {
+            ris.add(m.getContenuto());
+        }
+
+        return ris;
+    }   
+
+    /**
+     * Restituisce una lista contenente il contenuto dei messaggi ricevuti nella Conversazione {@code this} dell'utente {@code u} avuto per argomento.
+     * 
+     * @param u L'utente di cui si vogliono sapere i messaggi ricevuti.
+     *
+     * @return La lista di messaggi ricevti da {@code u}.
+     * 
+     * @throws NullPointerException Se {@code u} è null.
+     * @throws IllegalArgumentException Se {@code u} non coincide con il mittente di {@code this}.
+     */
+    public List<Contenuto> getRicevuti(final Utente u) {
+        Objects.requireNonNull(u, "L'utente avuto per argomento non deve essere null.");
+
+        if (!u.getUsername().equals(this.getDestinatario())) throw new IllegalArgumentException("L'utente avuto per argomento non coincide con il destinatario di questa conversazione.");
+
+        List<Contenuto> ris = new ArrayList<Contenuto>();
+
+        for (Messaggio m : messaggi) {
+            ris.add(m.getContenuto());
+        }
+
+        return ris;
+    }
+
     @Override
     public Iterator<Messaggio> iterator() {
         return messaggi.iterator();
