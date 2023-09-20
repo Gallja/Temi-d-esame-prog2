@@ -10,6 +10,7 @@ public class Conversazione implements Iterable<Messaggio> {
     /**
      * IR: messaggi non deve essere null.
      * messaggi non deve contenere valori null.
+     * Per ogni elemento di Conversazione mittente e destinatario devono essere uguali.
      * 
      * AF: messaggi : la lista di messaggi della conversazione.
      */    
@@ -27,9 +28,12 @@ public class Conversazione implements Iterable<Messaggio> {
      * 
      * @throws NullPointerException Se {@code messaggi_in} è null.
      * @throws NullPointerException Se {@code messaggi_in} contiene 1 o più valori null.
+     * @throws IllegalArgumentException Se {@code messaggi_in} non contiene mittente e destinatario omogenei.
      */
     public Conversazione(final List<Messaggio> messaggi_in) {
         Objects.requireNonNull(messaggi_in, "La lista di messaggi non deve essere nulla.");
+
+        if (!controllaConv(messaggi_in)) throw new IllegalArgumentException("La lista di messaggi avuta per argomento deve contenere mittente e destinatario omogenei.");
 
         for (Messaggio m : messaggi_in) {
             Objects.requireNonNull(m, "La lista di messaggi non deve contenere valori null.");
@@ -39,6 +43,33 @@ public class Conversazione implements Iterable<Messaggio> {
     }
 
     // METODI
+
+    /**
+     * Restituisce un valore {@code True/False} in base al controllo effettuato sull'omogeneità della lista di messaggi {@code messaggi_in} fornita per argomento.<br/><br/>
+     * Per omogeneità si intende una lista di messaggi all'interno della quale mittente e destinatario sono sempre uguali.
+     * 
+     * @param messaggi_in La lista di messaggi da controllare.
+     * 
+     * @return Valore {@code True/False} risultato del controllo su {@code messaggi_in}.
+     * 
+     * @throws NullPointerException Se {@code messaggi_in} è null.
+     * @throws NullPointerException Se {@code messaggi_in} contiene valori null.
+     */
+    private boolean controllaConv(final List<Messaggio> messaggi_in) {
+        Objects.requireNonNull(messaggi_in, "La lista di messaggi avuta per argomento non deve essere nulla.");
+
+        boolean flag = true;
+
+        for (int i = 0; i < messaggi_in.size() - 1; i ++) {
+            Objects.requireNonNull(messaggi_in.get(i), "La lista di messaggi non deve contenere valori null.");
+
+            if (!messaggi_in.get(i).equals(messaggi_in.get(i + 1))) {
+                return false;
+            }
+        }
+
+        return flag;
+    }
 
     /**
      * Restituisce i messaggi di {@code this}.
