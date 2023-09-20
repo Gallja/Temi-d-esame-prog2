@@ -79,6 +79,15 @@ public class Utente implements Iterable<Conversazione> {
     }
 
     /**
+     * Restituisce la password di {@code this}.
+     * 
+     * @return La password di {@code this}.
+     */
+    private String getPassword() {
+        return password;
+    }
+
+    /**
      * Imposta una nuova password {@code password} avuta per argomento per l'Utente {@code this}.
      * 
      * @param password La nuova passowrd che si intende impostare per {@code this}.
@@ -112,15 +121,11 @@ public class Utente implements Iterable<Conversazione> {
      * @throws IllegalArgumentException se {@code username} contiene spazi.
      * @throws IllegalArgumentException se {@code password} è vuota.
      */
-    public int autenticazione(final String username, final String password) {
-        Objects.requireNonNull(username, "Lo username non deve essere vuoto.");
-        Objects.requireNonNull(password, "Lo username non deve essere vuoto.");
+    public int autenticazione(final Utente u) {
+        Objects.requireNonNull(u, "L'utente avuto per argomento non deve essere null.");
 
-        if (username.isEmpty()) throw new IllegalArgumentException("Lo username non deve essere vuoto.");
-
-        if (password.isEmpty()) throw new IllegalArgumentException("La password non deve essere vuota.");
-
-        if (username.contains(" ")) throw new IllegalArgumentException("Lo username non deve contenere spazi.");
+        String username = u.getUsername();
+        String password = u.getPassword();
 
         if (this.username.equals(username) && this.password.equals(password)) {
             return 1;
