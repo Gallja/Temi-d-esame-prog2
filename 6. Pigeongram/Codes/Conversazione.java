@@ -6,7 +6,7 @@ import java.util.*;
  * Le istanze di questa classe sono mutabili.
  */
 
-public class Conversazione {
+public class Conversazione implements Iterable<Messaggio> {
     /**
      * IR: messaggi non deve essere null.
      * messaggi non deve contenere valori null.
@@ -47,5 +47,10 @@ public class Conversazione {
      */
     public List<Messaggio> getMessaggi() {
         return Collections.unmodifiableList(messaggi);
+    }
+
+    @Override
+    public Iterator<Messaggio> iterator() {
+        return messaggi.iterator();
     }
 }
