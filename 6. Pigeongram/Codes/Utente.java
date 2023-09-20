@@ -165,13 +165,10 @@ public class Utente implements Iterable<Conversazione> {
         List<String> listRis = new ArrayList<String>();
 
         for (Conversazione c : conversazioni) {
-            List<Messaggio> mess = c.getMessaggi();
-            for (Messaggio m : mess) {
-                listRis.add(m.getDestinatario());
-            }
+            c.getDestinatario();
         }
 
-        return Collections.unmodifiableList(listRis);
+        return listRis;
     }
 
     @Override

@@ -80,6 +80,28 @@ public class Conversazione implements Iterable<Messaggio> {
         return Collections.unmodifiableList(messaggi);
     }
 
+    /**
+     * Restituisce username del destinatario di {@code this}.
+     * 
+     * @return username del destinatario di {@code this}.
+     */
+    public String getDestinatario() {
+        Messaggio mess = messaggi.get(0);
+
+        return mess.getDestinatario();
+    }
+
+    /**
+     * Restituisce username del mittente di {@code this}.
+     * 
+     * @return username del mittente di {@code this}.
+     */
+    public String getMittente() {
+        Messaggio mess = messaggi.get(0);
+
+        return mess.getMittente();
+    }
+
     @Override
     public Iterator<Messaggio> iterator() {
         return messaggi.iterator();
