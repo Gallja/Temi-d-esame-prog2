@@ -63,6 +63,6 @@ public abstract class Contenuto {
 
     @Override
     public String toString() {
-        return "Contenuto [id=" + id + ", arg=" + arg + "]";
+        return "[" + id + "]" + arg;
     }
 }
