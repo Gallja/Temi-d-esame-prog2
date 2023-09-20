@@ -11,8 +11,8 @@ public class Testo extends Contenuto {
     /**
      * Costruisce un nuovo oggetto {@code this} a partire dall'identificativo {@code id}
      * 
-     * @param id Il carattere identificativo del Testo.
-     * @param arg L'argomento del Testo.
+     * @param id Il carattere identificativo di {@code this}.
+     * @param arg L'argomento di {@code this}.
      */
     public Testo(final char id, final String arg) {
         super(id, arg);
