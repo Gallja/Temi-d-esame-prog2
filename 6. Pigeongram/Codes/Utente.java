@@ -122,7 +122,7 @@ public class Utente implements Iterable<Conversazione> {
 
         if (username.contains(" ")) throw new IllegalArgumentException("Lo username non deve contenere spazi.");
 
-        if (this.username == username && this.password == password) {
+        if (this.username.equals(username) && this.password.equals(password)) {
             return 1;
         }
 
