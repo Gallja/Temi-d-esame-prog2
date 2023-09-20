@@ -20,11 +20,12 @@ public class Conversazione implements Iterable<Messaggio> {
 
     // COSTRUTTORE
 
-    /**@throws NullPointerException Se {@code messaggi_in} è null.
+    /**
      * Costruisce un nuovo oggetto {@code this} a partire dalla lista di messaggi {@code messaggi_in} fornita per argomento.
      * 
      * @param messaggi_in La lista di messaggi con la quale si intende costruire {@code this}.
      * 
+     * @throws NullPointerException Se {@code messaggi_in} è null.
      * @throws NullPointerException Se {@code messaggi_in} è null.
      * @throws NullPointerException Se {@code messaggi_in} contiene 1 o più valori null.
      */
