@@ -138,7 +138,14 @@ public class MolecolaComposta implements Molecola, Iterable<ElementoChimico> {
 
     @Override
     public String toString() {
-        return "MolecolaComposta [elMolecola=" + elMolecola + ", tavola=" + tavola + "]";
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(getFormula());
+        sb.append(" ,");
+        sb.append(getPeso());
+        sb.append(getTipo()).append("\n");
+
+        return sb.toString();
     }
 
 }
