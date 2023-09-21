@@ -76,6 +76,6 @@ public class MolecolaSemplice implements Molecola {
 
     @Override
     public String toString() {
-        return "MolecolaSemplice [elemento=" + elemento + ", occorrenza=" + occorrenza + ", tavola=" + tavola + "]";
+        return "MolecolaSemplice [elemento=" + elemento + ", occorrenza=" + occorrenza;
     }
 }
