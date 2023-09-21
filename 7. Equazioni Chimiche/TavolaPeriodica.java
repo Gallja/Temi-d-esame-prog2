@@ -83,6 +83,31 @@ public class TavolaPeriodica implements Iterable<ElementoChimico> {
         elementi.put(el, numAtomico);
     }
 
+    /**
+     * Restituisce un valore {@code True/False} in base al controllo della presenza
+     * dell'elemento {@code e}, avuto per argomento, in {@code this}.
+     * 
+     * @param e L'elemento chimico di cui si vuole controllare la presenza in
+     *          {@code this}.
+     * 
+     * @return {@code True/False} in base alla presenza (o non) do {@code e} in
+     *         {@code this}.
+     * 
+     * @throws NullPointerException Se {@code e} è null.
+     */
+    public boolean nellTavola(final ElementoChimico e) {
+        Objects.requireNonNull(e, "L'elemento chimico avuto per argomento non deve essere null.");
+
+        boolean flag = false;
+
+        for (Map.Entry<ElementoChimico, Integer> entry : elementi.entrySet()) {
+            if (entry.getKey().equals(e))
+                return flag = true;
+        }
+
+        return flag;
+    }
+
     @Override
     public Iterator<ElementoChimico> iterator() {
         return elementi.keySet().iterator();
