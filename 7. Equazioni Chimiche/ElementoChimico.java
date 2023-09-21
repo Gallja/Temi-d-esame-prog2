@@ -102,6 +102,35 @@ public class ElementoChimico {
     }
 
     @Override
+    public int hashCode() {
+        return Objects.hash(this.nome, this.simbolo, this.peso);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        ElementoChimico other = (ElementoChimico) obj;
+        if (nome == null) {
+            if (other.nome != null)
+                return false;
+        } else if (!nome.equals(other.nome))
+            return false;
+        if (simbolo == null) {
+            if (other.simbolo != null)
+                return false;
+        } else if (!simbolo.equals(other.simbolo))
+            return false;
+        if (Float.floatToIntBits(peso) != Float.floatToIntBits(other.peso))
+            return false;
+        return true;
+    }
+
+    @Override
     public String toString() {
         return "nome=" + nome + ", simbolo=" + simbolo + ", peso=" + peso;
     }
