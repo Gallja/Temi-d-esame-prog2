@@ -8,7 +8,7 @@ import java.util.*;
  * Le istanze di questa classe sono immutabili.
  */
 
-public class MolecolaComposta implements Molecola {
+public class MolecolaComposta implements Molecola, Iterable<ElementoChimico> {
 
     /**
      * IR: La mappa che tiene traccia degli elementi chimici della molecola non deve
@@ -20,8 +20,12 @@ public class MolecolaComposta implements Molecola {
      */
 
     // ATTRIBUTI
-    /** La mappa che contiene gli elementi chimici della molecola */
+    /** La mappa che contiene gli elementi chimici di {@code this} */
     private final Map<ElementoChimico, Integer> elMolecola = new HashMap<ElementoChimico, Integer>();
+    /**
+     * La tavola periodica a cui fanno riferimento gli elementi chimici di
+     * {@code this}
+     */
     private final TavolaPeriodica tavola;
 
     // COSTRUTTORE
@@ -57,7 +61,7 @@ public class MolecolaComposta implements Molecola {
             Objects.requireNonNull(entry.getValue(),
                     "L'occorrenza dell'elemento chimico nella molecola non deve essere null.");
 
-            if (tavola.nellTavola(entry.getKey()))
+            if (!tavola.nellTavola(entry.getKey()))
                 throw new IllegalArgumentException(
                         "Tutti gli elementi della molecola avuta per argomento devono essere presenti nella tavola periodica.");
 
@@ -67,6 +71,18 @@ public class MolecolaComposta implements Molecola {
 
     // METODI
 
+    /**
+     * Modifica {@code this} ordinandone gli elementi secondo convenzione di Hill.
+     * 
+     * La convenzione di Hill la molecola deve essere scritta con gli elementi
+     * nell'ordine C, H, N e O seguiti dagli altri elementi in ordine alfabetico del
+     * simbolo e, se la numerosità dell'elemento è pari a 1, tale numero viene
+     * omesso.
+     */
+    private void ordina() {
+
+    }
+
     @Override
     public String getFormula() {
         return null;
@@ -74,11 +90,28 @@ public class MolecolaComposta implements Molecola {
 
     @Override
     public float getPeso() {
-        return 0;
+        float pesoTot = 0;
+
+        for (Map.Entry<ElementoChimico, Integer> entry : elMolecola.entrySet()) {
+            pesoTot += entry.getKey().getPeso() * entry.getValue();
+        }
+
+        return pesoTot;
     }
 
     @Override
     public String getTipo() {
         return "Composta";
     }
+
+    @Override
+    public Iterator<ElementoChimico> iterator() {
+        return elMolecola.keySet().iterator();
+    }
+
+    @Override
+    public String toString() {
+        return "MolecolaComposta [elMolecola=" + elMolecola + ", tavola=" + tavola + "]";
+    }
+
 }
