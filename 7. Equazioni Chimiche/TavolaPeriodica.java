@@ -90,6 +90,12 @@ public class TavolaPeriodica implements Iterable<ElementoChimico> {
 
     @Override
     public String toString() {
-        return "TavolaPeriodica [elementi=" + elementi + "]";
+        StringBuilder sb = new StringBuilder();
+
+        for (Map.Entry<ElementoChimico, Integer> entry : elementi.entrySet()) {
+            sb.append(entry.getKey()).append(" - ").append(entry.getValue()).append("\n");
+        }
+
+        return sb.toString();
     }
 }
