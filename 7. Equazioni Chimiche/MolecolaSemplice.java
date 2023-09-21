@@ -48,13 +48,14 @@ public class MolecolaSemplice implements Molecola {
             throw new IllegalArgumentException(
                     "L'occorrenza dell'elemento chimico nella molecola semplice deve essere positiva.");
 
-        if (!tavola_in.nellTavola(elemento_in))
+        this.tavola = tavola_in;
+
+        if (!tavola.nellTavola(elemento_in))
             throw new IllegalArgumentException(
                     "La molecola avuta per argomento deve essere presente all'interno della tavola periodica.");
 
         this.elemento = elemento_in;
         this.occorrenza = occorrenza_in;
-        this.tavola = tavola_in;
     }
 
     // METODI
