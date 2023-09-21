@@ -97,7 +97,7 @@ public class MolecolaSemplice implements Molecola {
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
-        sb.append(getFormula()).append(", ").append(getPeso()).append(getTipo()).append("\n");
+        sb.append(getFormula()).append(", ").append(getPeso()).append(" ").append(getTipo()).append("\n");
 
         return sb.toString();
     }
