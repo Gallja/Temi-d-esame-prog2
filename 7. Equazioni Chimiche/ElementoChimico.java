@@ -100,4 +100,9 @@ public class ElementoChimico {
     public float getPeso() {
         return peso;
     }
+
+    @Override
+    public String toString() {
+        return "ElementoChimico [nome=" + nome + ", simbolo=" + simbolo + ", peso=" + peso + "]";
+    }
 }
