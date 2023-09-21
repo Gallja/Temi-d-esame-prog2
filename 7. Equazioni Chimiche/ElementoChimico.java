@@ -103,6 +103,6 @@ public class ElementoChimico {
 
     @Override
     public String toString() {
-        return "ElementoChimico [nome=" + nome + ", simbolo=" + simbolo + ", peso=" + peso + "]";
+        return "nome=" + nome + ", simbolo=" + simbolo + ", peso=" + peso;
     }
 }
