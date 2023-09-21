@@ -60,6 +60,24 @@ public class MolecolaSemplice implements Molecola {
 
     // METODI
 
+    /**
+     * Restituisce l'elemento chimico di {@code this}.
+     * 
+     * @return L'elemento chimico di {@code this}.
+     */
+    public ElementoChimico getElemento() {
+        return elemento;
+    }
+
+    /**
+     * Restituisce l'occorrenza dell'elemento chimico di {@code this}.
+     * 
+     * @return L'occorrenza dell'elemento chimico di {@code this}.
+     */
+    public int getOccorrenza() {
+        return occorrenza;
+    }
+
     @Override
     public String getFormula() {
         return elemento.toString() + occorrenza;
@@ -79,4 +97,5 @@ public class MolecolaSemplice implements Molecola {
     public String toString() {
         return "MolecolaSemplice [elemento=" + elemento + ", occorrenza=" + occorrenza;
     }
+
 }
