@@ -95,7 +95,11 @@ public class MolecolaSemplice implements Molecola {
 
     @Override
     public String toString() {
-        return "MolecolaSemplice [elemento=" + elemento + ", occorrenza=" + occorrenza;
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(getFormula()).append(", ").append(getPeso()).append(getTipo()).append("\n");
+
+        return sb.toString();
     }
 
 }
