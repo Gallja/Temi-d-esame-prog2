@@ -9,7 +9,7 @@ import java.util.*;
  * Le istanze di questa classe sono mutabili.
  */
 
-public class TavolaPeriodica {
+public class TavolaPeriodica implements Iterable<ElementoChimico> {
     /**
      * IR: La mappa contenente gli elementi chimici non deve essere null.
      * Ogni elemento chiave-valore degli elementi chimici della tavola periodica non
@@ -81,6 +81,11 @@ public class TavolaPeriodica {
         }
 
         elementi.put(el, numAtomico);
+    }
+
+    @Override
+    public Iterator<ElementoChimico> iterator() {
+        return elementi.keySet().iterator();
     }
 
     @Override
