@@ -71,22 +71,49 @@ public class MolecolaComposta implements Molecola, Iterable<ElementoChimico> {
 
     // METODI
 
-    /**
-     * Modifica {@code this} ordinandone gli elementi secondo convenzione di Hill.
-     * 
-     * La convenzione di Hill la molecola deve essere scritta con gli elementi
-     * nell'ordine C, H, N e O seguiti dagli altri elementi in ordine alfabetico del
-     * simbolo e, se la numerosità dell'elemento è pari a 1, tale numero viene
-     * omesso.
-     */
-    private void ordina() {
-
-    }
-
     @Override
     public String getFormula() {
-        return null;
+        List<ElementoChimico> caratteriSpeciali = new ArrayList<>();
+        List<ElementoChimico> caratteriNormali = new ArrayList<>();
+
+        String[] car = { "C", "H", "N", "O" };
+
+        for (Map.Entry<ElementoChimico, Integer> entry : elMolecola.entrySet()) {
+            for (int i = 0; i < car.length; i++) {
+                if (entry.getKey().getSimbolo().contains(car[i])) {
+                    caratteriSpeciali.add(entry.getKey());
+                } else {
+                    caratteriNormali.add(entry.getKey());
+                }
+            }
+        }
+
+        Collections.sort(caratteriSpeciali, comp);
+        Collections.sort(caratteriNormali, comp);
+
+        caratteriSpeciali.addAll(caratteriNormali);
+
+        StringBuilder sb = new StringBuilder();
+
+        for (ElementoChimico elm : caratteriSpeciali) {
+            sb.append(elm.getSimbolo());
+
+            for (Map.Entry<ElementoChimico, Integer> entry : elMolecola.entrySet()) {
+                if (entry.getKey().getSimbolo().equals(elm.getSimbolo()) && entry.getValue() > 1) {
+                    sb.append(entry.getValue()).append("\n");
+                }
+            }
+        }
+
+        return sb.toString();
     }
+
+    Comparator<ElementoChimico> comp = new Comparator<>() {
+        @Override
+        public int compare(ElementoChimico o1, ElementoChimico o2) {
+            return o1.getSimbolo().compareTo(o2.getSimbolo());
+        }
+    };
 
     @Override
     public float getPeso() {
