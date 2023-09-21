@@ -23,8 +23,11 @@ public class MolecolaSemplice implements Molecola {
      */
 
     // ATTRIBUTI
+    /** L'elemento chimico di cui è composto {@code this} */
     private final ElementoChimico elemento;
+    /** L'occorrenza dell'elemento chimico di {@code this} */
     private final int occorrenza;
+    /** La tavola periodica a cui fa riferimento {@code this} */
     private final TavolaPeriodica tavola;
 
     // COSTRUTTORE
