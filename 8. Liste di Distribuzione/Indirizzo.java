@@ -97,7 +97,7 @@ public class Indirizzo {
          * 
          * @return La porzione locale dell'inirizzo email.
          */
-        public String getNome() {
+        private String getLoc() {
             return nome;
         }
     }
@@ -171,7 +171,7 @@ public class Indirizzo {
          * 
          * @return La porzione dominio dell'inirizzo email.
          */
-        public String getDominio() {
+        private String getDom() {
             return nomeDom;
         }
     }
@@ -221,5 +221,53 @@ public class Indirizzo {
 
     // METODI
 
+    /**
+     * Restituisce la porzione locale di {@code this}.
+     * 
+     * @return La porzione locale di {@code this}.
+     */
+    public String getLocale() {
+        return loc.getLoc();
+    }
 
+    /**
+     * Restituisce la porzione dominio di {@code this}.
+     * 
+     * @return La porzione dominio di {@code this}.
+     */
+    public String getDominio() {
+        return dom.getDom();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.loc, this.dom);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Indirizzo other = (Indirizzo) obj;
+        if (loc == null) {
+            if (other.loc != null)
+                return false;
+        } else if (!loc.equals(other.loc))
+            return false;
+        if (dom == null) {
+            if (other.dom != null)
+                return false;
+        } else if (!dom.equals(other.dom))
+            return false;
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return loc.getLoc() + "@" + dom.getDom();
+    }
 }
