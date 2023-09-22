@@ -195,6 +195,39 @@ public class ListeDistribuzione implements Iterable<Indirizzo> {
         return Collections.unmodifiableSet(indirizzi);
     }
 
+    /**
+     * Modifica {@code this} aggiungendo l'indirizzo email {@code ind} avuto per
+     * argomento.
+     * 
+     * @param ind L'indirizzo che si intende rimuovere da {@code this}.
+     * 
+     * @throws NullPointerException Se {@code ind} è null.
+     */
+    public void addInidirizzo(final Indirizzo ind) {
+        Objects.requireNonNull(ind, "L'indirizzo email avuto per argomento non deve essere null.");
+
+        indirizzi.add(ind);
+    }
+
+    /**
+     * Modifica {@code this} rimuovendo l'indirizzo email {@code ind} avuto per
+     * argomento.
+     * 
+     * @param ind L'indirizzo che si intende rimuovere da {@code this}.
+     * 
+     * @throws NullPointerException     Se {@code ind} è null.
+     * @throws IllegalArgumentException Se {@code in} non è presente in
+     *                                  {@code this}.
+     */
+    public void removeIndirizzo(final Indirizzo ind) {
+        Objects.requireNonNull(ind, "L'indirizzo email avuto per argomento non deve essere null.");
+
+        if (!indirizzi.contains(ind))
+            throw new IllegalArgumentException("L'indirizzo avuto per argomento non è presente nella lista.");
+
+        indirizzi.remove(ind);
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(this.nome);
