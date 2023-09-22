@@ -28,39 +28,44 @@ public class Alias {
     /** Il dominio di {@code this} */
     private final Indirizzo.Dominio dom;
     /** La serie di indirizzi email di {@code this} */
-    private final Set<Indirizzo> indirizzi = new HashSet<Indirizzo>();
+    private final Set<Indirizzo.Locale> indirizzi = new HashSet<Indirizzo.Locale>();
 
     // COSTRUTTORE
 
     /**
-     * Costruisce un nuovo oggetto {@code this} a partire da {@code nome}, il dominio {@code dom} e la lista di indirizzi {@code indirizzi_in} avuti per argomento.
+     * Costruisce un nuovo oggetto {@code this} a partire da {@code nome}, il
+     * dominio {@code dom} e la lista di indirizzi {@code indirizzi_in} avuti per
+     * argomento.
      * 
-     * @param nome Il nome di {@code this}.
-     * @param dom Il dominio di {@code this}.
-     * @param indirizzi_in La lista di indirizzi associati a {@code this}.
+     * @param nome         Il nome di {@code this}.
+     * @param dom          Il dominio di {@code this}.
+     * @param indirizzi_in La lista di indirizzi locali associati a {@code this}.
      * 
-     * @throws NullPointerException Se {@code nome} è null.
-     * @throws NullPointerException Se {@code dom} è null.
-     * @throws NullPointerException Se {@code indirizzi_in} è null.
-     * @throws NullPointerException Se {@code indirizzi_in} contiene valori null.
+     * @throws NullPointerException     Se {@code nome} è null.
+     * @throws NullPointerException     Se {@code dom} è null.
+     * @throws NullPointerException     Se {@code indirizzi_in} è null.
+     * @throws NullPointerException     Se {@code indirizzi_in} contiene valori
+     *                                  null.
      * @throws IllegalArgumentException Se {@code nome} è vuoto.
      * @throws IllegalArgumentException se {@code dom} è vuoto.
      */
-    public Alias(final String nome, final String dom, final Set<Indirizzo> indirizzi_in) {
+    public Alias(final String nome, final String dom, final Set<Indirizzo.Locale> indirizzi_in) {
         Objects.requireNonNull(nome, "Il nome avuto per argomento non deve essere null.");
 
         Objects.requireNonNull(dom, "Il dominio avuto per argomento non deve essere null.");
 
         Objects.requireNonNull(indirizzi_in, "La lista di indirizzi avuta per argomento non deve essere null.");
 
-        if (nome.isEmpty()) throw new IllegalArgumentException("Il nome avuto per argomento non deve essere vuoto.");
+        if (nome.isEmpty())
+            throw new IllegalArgumentException("Il nome avuto per argomento non deve essere vuoto.");
 
-        if (dom.isEmpty()) throw new IllegalArgumentException("Il dominio avuto per argomento non deve essere vuoto.");
+        if (dom.isEmpty())
+            throw new IllegalArgumentException("Il dominio avuto per argomento non deve essere vuoto.");
 
         this.nome = nome;
         this.dom = new Indirizzo.Dominio(dom);
 
-        for (Indirizzo ind : indirizzi_in) {
+        for (Indirizzo.Locale ind : indirizzi_in) {
             Objects.requireNonNull(ind, "La lista di indirizzi avuta per argomento non deve contenere valori null.");
 
             this.indirizzi.add(ind);
@@ -92,7 +97,7 @@ public class Alias {
      * 
      * @return Gli indirizzi di {@code this}.
      */
-    public Set<Indirizzo> getIndirizzi() {
+    public Set<Indirizzo.Locale> getIndirizzi() {
         return Collections.unmodifiableSet(indirizzi);
     }
 
@@ -103,7 +108,5 @@ public class Alias {
     public void removeIndirizzo() {
 
     }
-
-    
 
 }
