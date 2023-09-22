@@ -11,7 +11,8 @@ import java.util.Objects;
 
 public class Pavimentazione implements Rivestimento, Iterable<Pavimentazione.Componente> {
     /**
-     * OVERVIEW: Componente è una classe concreta che implementa
+     * OVERVIEW: Componente è una classe concreta che implementa stato e metodi di
+     * un componente formato da una certa pavimentazione con relativa quantità.
      * Le istanze di questa classe sono immutabili.
      */
 
@@ -97,7 +98,8 @@ public class Pavimentazione implements Rivestimento, Iterable<Pavimentazione.Com
      *                                  per argomento fosse vuota.
      */
     public Pavimentazione(final Collection<Componente> componenti_in) {
-        Objects.requireNonNull(componenti_in, "La collezione di componenti fornita per argomento non deve essere nulla.");
+        Objects.requireNonNull(componenti_in,
+                "La collezione di componenti fornita per argomento non deve essere nulla.");
 
         if (componenti_in.isEmpty())
             throw new IllegalArgumentException("La collezione di componenti non deve essere vuota.");
