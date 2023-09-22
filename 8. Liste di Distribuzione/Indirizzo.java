@@ -46,9 +46,9 @@ public class Indirizzo {
             if (nome.contains(" ")) {
                 String[] result = nome.split(" ");                
 
-                for (int i = 0; i < result.length; i++) {
+                for (int i = 0; i < result.length(); i++) {
                     this.nome += result[i];
-                    if (i != result.length - 1) {
+                    if (i != result.length() - 1) {
                         this.nome += ".";
                     }
                 }
@@ -119,22 +119,15 @@ public class Indirizzo {
          * Costruisce un nuovo oggetto {@code this} a partire dal nome del dominio {@code nomeDom} e l'estensione {@code estensioneDom} avuti per argomento.
          * 
          * @param nomeDom Il nome di {@code this}
-         * @param estensioneDom L'estensione di {@code this}
          * 
          * @throws NullPointerException Se {@code nomeDom} è null.
-         * @throws NullPointerException Se {@code estensioneDom} è null.
          * @throws IllegalArgumentException Se {@code nomeDom} è vuoto.
-         * @throws IllegalArgumentException Se {@code estensioneDom} è vuoto.
-         * @throws IllegalArgumentException Se {@code this} non rispetta l'espressione regolare
+         * @throws IllegalArgumentException Se {@code nomeDom} non rispetta l'espressione regolare
          */
-        public Dominio(final String nomeDom, final String estensioneDom) {
+        public Dominio(final String nomeDom) {
             Objects.requireNonNull(nomeDom, "Il nome del dominio avuto per argomento non deve essere null.");
 
-            Objects.requireNonNull(estensioneDom, "L'estensione del dominio avuto per argomento non deve essere null.");
-
             if (nomeDom.isEmpty()) throw new IllegalArgumentException("Il nome del dominio non deve essere vuoto.");
-
-            if (estensioneDom.isEmpty()) throw new IllegalArgumentException("L'estensione del dominio non deve essere vuoto.");
 
             nomeDom += estensioneDom;
 
@@ -176,14 +169,48 @@ public class Indirizzo {
     }
 
     /**
-     * IR: 
+     * IR: La porzione locale non deve essere null.
+     * La porzione dominio non deve essere null.
      * 
-     * AF: 
+     * AF: loc : porzione locale dell'indirizzo.
+     * dom : porzione dominio dell'indirizzo.
      */
 
     // ATTRIBUTI
+    /** La porzione locale di {@code this} */
+    private final Locale loc;
+    /** La porzione dominio di {@code this} */
+    private final Dominio dom;
 
     // COSTRUTTORE
 
-    // ATTRIBUTI
+    /**
+     * Costruisce un nuovo oggetto {@code this} a partire da una stringa {@code email} avuta per argomento.
+     * 
+     * @param email La mail con cui si intende costruire {@code this}.
+     * 
+     * @throws NullPointerException Se {@code email} è null.
+     * @throws IllegalArgumentException Se {@code email} è vuota.
+     * @throws IllegalArgumentException Se {@code email} non contiene, con occorrenza pari a 1, il carattere '@'.
+     */
+    public Indirizzo(final String email) {
+        Objects.requireNonNull(email, "La mail avuta per argomento non deve essere null.");
+
+        if (email.isEmpty()) throw new IllegalArgumentException("La mail avuta per argomento non deve essere vuota.");
+
+        int cntChiocciola = 0;
+        for (int i = 0; i < email.length(); i++) {
+            if (email.charAt(i) == '@') cntChiocciola ++;
+        }
+
+        if (cntChiocciola == 0 || cntChiocciola > 1) throw new IllegalArgumentException("L'indirizzo email avuto per argomento deve contenere una e una sola chiocciola.");
+
+        String[1] res = email.split("@");
+
+        this.loc = new Locale(res[0]);
+        this.dom = new Dominio(res[1]);
+    }
+
+    // METODI
+
 }
