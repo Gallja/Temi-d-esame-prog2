@@ -7,11 +7,15 @@ import java.util.*;
  * Le istanze di questa classe sono immutabili.
  */
 
-public class ListeDistribuzione {
+public class ListeDistribuzione implements Iterable<Indirizzo> {
     /**
-     * IR:
+     * IR: Il nome della lista non deve essere null.
+     * Il nome della lista non deve essere vuoto.
+     * Il Set di indirizzi email non deve essere null.
+     * Il Set di indirizzi email non deve contenere valori null.
      * 
-     * AF:
+     * AF: nome : il nome di {@code this}
+     * indirizzi : la lista di indirizzi email di {@code this}
      */
 
     // ATTRIBUTI
@@ -53,6 +57,60 @@ public class ListeDistribuzione {
         }
     }
 
+    /**
+     * Costruisce un nuovo oggetto {@code this} a partire da 2 liste di
+     * distribuzione {@code lista1} e {@code lista2}, cui viene effettauta la somma.
+     * 
+     * @param lista1 La prima lista che compone {@code this}.
+     * @param lista2 La seconda lista che compone {@code this}.
+     * 
+     * @throws NullPointerException     Se il nome di {@code lista1} è null.
+     * @throws NullPointerException     Se il nome di {@code lista2} è null.
+     * @throws NullPointerException     Se {@code lista1} è null.
+     * @throws NullPointerException     Se {@code lista2} è null.
+     * @throws NullPointerException     Se {@code lista1} contiene valori null.
+     * @throws NullPointerException     Se {@code lista2} contiene valori null.
+     * @throws IllegalArgumentException Se il nome di {@code lista1} è vuoto.
+     * @throws IllegalArgumentException Se il nome di {@code lista2} è vuoto.
+     */
+    public ListeDistribuzione(final ListeDistribuzione lista1, final ListeDistribuzione lista2) {
+        Objects.requireNonNull(lista1, "La prima lista avuta per argomento non deve essere null.");
+
+        Objects.requireNonNull(lista2, "La seconda lista avuta per argomento non deve essere null.");
+
+        Objects.requireNonNull(lista1.getNome(), "La prima lista avuta per argomento non deve avere nome null.");
+
+        Objects.requireNonNull(lista2.getNome(), "La seconda lista avuta per argomento non deve avere nome null.");
+
+        if (lista1.getNome().isEmpty())
+            throw new IllegalArgumentException("La prima lista avuta per argomento non deve avere nome vuoto.");
+
+        if (lista2.getNome().isEmpty())
+            throw new IllegalArgumentException("La seconda lista avuta per argomento non deve avere nome vuoto.");
+
+        String nomeFinale = lista1.getNome() + lista2.getNome();
+
+        Set<Indirizzo> setFinale = new HashSet<>();
+
+        for (Indirizzo ind : lista1.getIndirizzi()) {
+            Objects.requireNonNull(ind, "La prima lista avuta per argomento non deve contenere valori null.");
+
+            setFinale.add(ind);
+        }
+
+        for (Indirizzo ind : lista2.getIndirizzi()) {
+            Objects.requireNonNull(ind, "La seconda lista avuta per argomento non deve contenere valori null.");
+
+            setFinale.add(ind);
+        }
+
+        this.nome = nomeFinale;
+
+        for (Indirizzo indir : setFinale) {
+            this.indirizzi.add(indir);
+        }
+    }
+
     // METODI
 
     /**
@@ -71,5 +129,10 @@ public class ListeDistribuzione {
      */
     public Set<Indirizzo> getIndirizzi() {
         return Collections.unmodifiableSet(indirizzi);
+    }
+
+    @Override
+    public Iterator<Indirizzo> iterator() {
+        return indirizzi.iterator();
     }
 }
