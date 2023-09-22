@@ -95,4 +95,15 @@ public class Alias {
     public Set<Indirizzo> getIndirizzi() {
         return Collections.unmodifiableSet(indirizzi);
     }
+
+    public void addIndirizzo(final Indirizzo ind) {
+
+    }
+
+    public void removeIndirizzo() {
+
+    }
+
+    
+
 }

@@ -2,24 +2,29 @@ import java.util.regex.*;
 import java.util.*;
 
 /**
- * OVERVIEW: Indirizzo è una classe concreta che implementa stato e metodi di un indirizzo email.
- * Ogni indirizzo è rappresentato dalla sua parte locale e dalla sua parte dominio.
- * Una tipica istanza di questa classe è "nome.cognome@dominio.it" 
+ * OVERVIEW: Indirizzo è una classe concreta che implementa stato e metodi di un
+ * indirizzo email.
+ * Ogni indirizzo è rappresentato dalla sua parte locale e dalla sua parte
+ * dominio.
+ * Una tipica istanza di questa classe è "nome.cognome@dominio.it"
  * Le istanze di questa classe sono immutabili.
  */
 
 public class Indirizzo {
 
     /**
-     * OVERVIEW: Locale è una classe concreta che rappresenta la porzione locale di un inidirizzo email.
-     * Ogni porzione locale è rappresentata dalla stringa "username" dell'utente separata dal '.'.
+     * OVERVIEW: Locale è una classe concreta che rappresenta la porzione locale di
+     * un inidirizzo email.
+     * Ogni porzione locale è rappresentata dalla stringa "username" dell'utente
+     * separata dal '.'.
      * Le istanze di questa classe sono immutabili.
      */
-    public class Locale {
+    public static class Locale {
         /**
          * IR: Il nome della porzione locale non deve essere null.
          * Il nome della porzione locale non deve essere vuoto.
-         * Il nome della porzione locale deve rispettare l'espressione regolare {@code regex}.
+         * Il nome della porzione locale deve rispettare l'espressione regolare
+         * {@code regex}.
          * 
          * AF: nome : la porzione "locale" dell'inidirizzo email.
          * regex : l'espressione regolare che deve rispettare {@code this}.
@@ -30,27 +35,32 @@ public class Indirizzo {
         private final String nome;
         /** L'espressione regolare che deve rispettare {@code this} */
         final static String regex = "^[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*$";
-        
+
         // COSTRUTTORE
 
         /**
-         * Costruisce un nuovo oggetto {@code this} a partire dalla stringa fornita {@code nome} avuta per argomento.
+         * Costruisce un nuovo oggetto {@code this} a partire dalla stringa fornita
+         * {@code nome} avuta per argomento.
          * 
          * @param nome La stringa che forma la porzione locale di {@code this}
          * 
-         * @throws NullPointerException Se {@code nome} è null.
+         * @throws NullPointerException     Se {@code nome} è null.
          * @throws IllegalArgumentException Se {@code nome} è vuoto.
-         * @throws IllegalArgumentException Se {@code nome} non rispetta l'espressione regolare per le porzioni locali degli indirizzi email "^[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*$".
+         * @throws IllegalArgumentException Se {@code nome} non rispetta l'espressione
+         *                                  regolare per le porzioni locali degli
+         *                                  indirizzi email
+         *                                  "^[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*$".
          */
         public Locale(final String nome) {
             Objects.requireNonNull(nome, "Il nome avuto per argomento non deve essere null.");
 
-            if (nome.isEmpty()) throw new IllegalArgumentException("Il nome avuto per argomento non deve essere vuoto.");
+            if (nome.isEmpty())
+                throw new IllegalArgumentException("Il nome avuto per argomento non deve essere vuoto.");
 
             String strRis = "";
 
             if (nome.contains(" ")) {
-                String[] result = nome.split(" ");                
+                String[] result = nome.split(" ");
 
                 for (int i = 0; i < result.length; i++) {
                     strRis += result[i];
@@ -61,29 +71,33 @@ public class Indirizzo {
 
                 this.nome = strRis;
 
-                if (!checkEspressione(this.nome)) throw new IllegalArgumentException("La porzione locale deve rispettare l'espressione regolare.");
-                
+                if (!checkEspressione(this.nome))
+                    throw new IllegalArgumentException("La porzione locale deve rispettare l'espressione regolare.");
+
             } else {
                 this.nome = nome;
 
-                if (!checkEspressione(this.nome)) throw new IllegalArgumentException("La porzione locale deve rispettare l'espressione regolare.");
+                if (!checkEspressione(this.nome))
+                    throw new IllegalArgumentException("La porzione locale deve rispettare l'espressione regolare.");
             }
-        } 
+        }
 
         // METODI
 
         /**
-         * Restituisce un valore {@code True/False} se la stringa {@code s} avuta per argomento rispetta l'espressione regolare.
+         * Restituisce un valore {@code True/False} se la stringa {@code s} avuta per
+         * argomento rispetta l'espressione regolare.
          *
          * @param s La stringa che si intende controllare.
          * 
-         * @throws NullPointerException Se {@code s} è null.
+         * @throws NullPointerException     Se {@code s} è null.
          * @throws IllegalArgumentException Se {@code s} è vuoto.
          */
         private boolean checkEspressione(final String s) {
             Objects.requireNonNull(s, "La stringa avuta per argomento non deve essere null.");
 
-            if (s.isEmpty()) throw new IllegalArgumentException("La stringa avuta per argomento non deve essere vuota.");
+            if (s.isEmpty())
+                throw new IllegalArgumentException("La stringa avuta per argomento non deve essere vuota.");
 
             Pattern pattern = Pattern.compile(this.regex);
 
@@ -93,7 +107,8 @@ public class Indirizzo {
         }
 
         /**
-         * Restituisce la stringa corrispondente alla porzione locale dell'indirizzo email.
+         * Restituisce la stringa corrispondente alla porzione locale dell'indirizzo
+         * email.
          * 
          * @return La porzione locale dell'inirizzo email.
          */
@@ -103,8 +118,10 @@ public class Indirizzo {
     }
 
     /**
-     * OVERVIEW: Dominio è una classe statica concreta che rappresenta la porzione del dominio di un indirizzo email.
-     * Ogni porzione dominio è rappresentata da una o più parole chiavi separate dal '.' e domini di livello come ".it" o ".com".
+     * OVERVIEW: Dominio è una classe statica concreta che rappresenta la porzione
+     * del dominio di un indirizzo email.
+     * Ogni porzione dominio è rappresentata da una o più parole chiavi separate dal
+     * '.' e domini di livello come ".it" o ".com".
      * Le istanze di questa classe sono immutabili.
      */
     public static class Dominio {
@@ -126,20 +143,24 @@ public class Indirizzo {
         // COSTRUTTORE
 
         /**
-         * Costruisce un nuovo oggetto {@code this} a partire dal nome del dominio {@code nomeDom} e l'estensione {@code estensioneDom} avuti per argomento.
+         * Costruisce un nuovo oggetto {@code this} a partire dal nome del dominio
+         * {@code nomeDom} e l'estensione {@code estensioneDom} avuti per argomento.
          * 
          * @param nomeDom Il nome di {@code this}
          * 
-         * @throws NullPointerException Se {@code nomeDom} è null.
+         * @throws NullPointerException     Se {@code nomeDom} è null.
          * @throws IllegalArgumentException Se {@code nomeDom} è vuoto.
-         * @throws IllegalArgumentException Se {@code nomeDom} non rispetta l'espressione regolare
+         * @throws IllegalArgumentException Se {@code nomeDom} non rispetta
+         *                                  l'espressione regolare
          */
         public Dominio(final String nomeDom) {
             Objects.requireNonNull(nomeDom, "Il nome del dominio avuto per argomento non deve essere null.");
 
-            if (nomeDom.isEmpty()) throw new IllegalArgumentException("Il nome del dominio non deve essere vuoto.");
+            if (nomeDom.isEmpty())
+                throw new IllegalArgumentException("Il nome del dominio non deve essere vuoto.");
 
-            if (!checkEspressione(nomeDom)) throw new IllegalArgumentException("Il dominio non rispetta l'espressione regolare.");
+            if (!checkEspressione(nomeDom))
+                throw new IllegalArgumentException("Il dominio non rispetta l'espressione regolare.");
 
             this.nomeDom = nomeDom;
         }
@@ -147,17 +168,19 @@ public class Indirizzo {
         // METODI
 
         /**
-         * Restituisce un valore {@code True/False} se la stringa {@code s} avuta per argomento rispetta l'espressione regolare.
+         * Restituisce un valore {@code True/False} se la stringa {@code s} avuta per
+         * argomento rispetta l'espressione regolare.
          *
          * @param s La stringa che si intende controllare.
          * 
-         * @throws NullPointerException Se {@code s} è null.
+         * @throws NullPointerException     Se {@code s} è null.
          * @throws IllegalArgumentException Se {@code s} è vuoto.
          */
         private boolean checkEspressione(final String s) {
             Objects.requireNonNull(s, "La stringa avuta per argomento non deve essere null.");
 
-            if (s.isEmpty()) throw new IllegalArgumentException("La stringa avuta per argomento non deve essere vuota.");
+            if (s.isEmpty())
+                throw new IllegalArgumentException("La stringa avuta per argomento non deve essere vuota.");
 
             Pattern pattern = Pattern.compile(this.regex);
 
@@ -167,7 +190,8 @@ public class Indirizzo {
         }
 
         /**
-         * Restituisce la stringa corrispondente alla porzione dominio dell'indirizzo email.
+         * Restituisce la stringa corrispondente alla porzione dominio dell'indirizzo
+         * email.
          * 
          * @return La porzione dominio dell'inirizzo email.
          */
@@ -193,25 +217,31 @@ public class Indirizzo {
     // COSTRUTTORE
 
     /**
-     * Costruisce un nuovo oggetto {@code this} a partire da una stringa {@code email} avuta per argomento.
+     * Costruisce un nuovo oggetto {@code this} a partire da una stringa
+     * {@code email} avuta per argomento.
      * 
      * @param email La mail con cui si intende costruire {@code this}.
      * 
-     * @throws NullPointerException Se {@code email} è null.
+     * @throws NullPointerException     Se {@code email} è null.
      * @throws IllegalArgumentException Se {@code email} è vuota.
-     * @throws IllegalArgumentException Se {@code email} non contiene, con occorrenza pari a 1, il carattere '@'.
+     * @throws IllegalArgumentException Se {@code email} non contiene, con
+     *                                  occorrenza pari a 1, il carattere '@'.
      */
     public Indirizzo(final String email) {
         Objects.requireNonNull(email, "La mail avuta per argomento non deve essere null.");
 
-        if (email.isEmpty()) throw new IllegalArgumentException("La mail avuta per argomento non deve essere vuota.");
+        if (email.isEmpty())
+            throw new IllegalArgumentException("La mail avuta per argomento non deve essere vuota.");
 
         int cntChiocciola = 0;
         for (int i = 0; i < email.length(); i++) {
-            if (email.charAt(i) == '@') cntChiocciola ++;
+            if (email.charAt(i) == '@')
+                cntChiocciola++;
         }
 
-        if (cntChiocciola == 0 || cntChiocciola > 1) throw new IllegalArgumentException("L'indirizzo email avuto per argomento deve contenere una e una sola chiocciola.");
+        if (cntChiocciola == 0 || cntChiocciola > 1)
+            throw new IllegalArgumentException(
+                    "L'indirizzo email avuto per argomento deve contenere una e una sola chiocciola.");
 
         String[] res = email.split("@");
 
