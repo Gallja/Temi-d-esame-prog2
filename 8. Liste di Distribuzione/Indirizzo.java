@@ -235,7 +235,7 @@ public class Indirizzo {
     /** La porzione dominio di {@code this} */
     private final Dominio dom;
 
-    // COSTRUTTORE
+    // COSTRUTTORI
 
     /**
      * Costruisce un nuovo oggetto {@code this} a partire da una stringa
@@ -268,6 +268,25 @@ public class Indirizzo {
 
         this.loc = new Locale(res[0]);
         this.dom = new Dominio(res[1]);
+    }
+
+    /**
+     * Costruisce un nuovo oggetto {@code this} a partire dal dominio {@code dom} e
+     * dal locale {@code loc} avuti per argomento.
+     * 
+     * @param dom Il dominio di {@code this}.
+     * @param loc Il locale di {@code this}
+     * 
+     * @throws NullPointerException Se {@code dom} è null.
+     * @throws NullPointerException Se {@code loc} è null.
+     */
+    public Indirizzo(final Dominio dom, final Locale loc) {
+        Objects.requireNonNull(dom, "Il dominio avuto per argomento non può essere null.");
+
+        Objects.requireNonNull(loc, "Il locale avuto per argomento non può essere null.");
+
+        this.dom = dom;
+        this.loc = loc;
     }
 
     // METODI
