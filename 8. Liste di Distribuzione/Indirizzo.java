@@ -107,7 +107,7 @@ public class Indirizzo {
      * Ogni porzione dominio è rappresentata da una o più parole chiavi separate dal '.' e domini di livello come ".it" o ".com".
      * Le istanze di questa classe sono immutabili.
      */
-    public class Dominio {
+    public static class Dominio {
         /**
          * IR: Il nome del dominio non deve essere null.
          * Il nome del dominio non deve essere vuoto.
