@@ -99,7 +99,7 @@ public class Indirizzo {
             if (s.isEmpty())
                 throw new IllegalArgumentException("La stringa avuta per argomento non deve essere vuota.");
 
-            Pattern pattern = Pattern.compile(this.regex);
+            Pattern pattern = Pattern.compile(regex);
 
             Matcher matcher = pattern.matcher(s);
 
