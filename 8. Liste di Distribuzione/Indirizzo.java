@@ -198,6 +198,27 @@ public class Indirizzo {
         private String getDom() {
             return nomeDom;
         }
+
+        /**
+         * Restituisce un valore {@code True/False} in basse alla presenza di
+         * {@code other} in {@code this}.
+         * 
+         * @param other Il dominio che si vuole controllare sia o no in {@code this}.
+         * 
+         * @return {@code True/False} se {@code other} è presente o no in {@code this}.
+         * 
+         * @throws NullPointerException Se {@code other} è null.
+         */
+        public boolean containsDom(final Indirizzo.Dominio other) {
+            Objects.requireNonNull(other, "Il sottodominio avuto per argomento non deve essere null.");
+
+            String nomeCast = other.getDom();
+
+            if (nomeDom.contains(nomeCast))
+                return true;
+
+            return false;
+        }
     }
 
     /**
