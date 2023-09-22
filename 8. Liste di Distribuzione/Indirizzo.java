@@ -1,3 +1,4 @@
+import java.util.regex.*;
 import java.util.*;
 
 /**
@@ -18,14 +19,17 @@ public class Indirizzo {
         /**
          * IR: Il nome della porzione locale non deve essere null.
          * Il nome della porzione locale non deve essere vuoto.
-         * Il nome della porzione locale deve rispettare l'espressione regolare "^[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*$".
+         * Il nome della porzione locale deve rispettare l'espressione regolare {@code regex}.
          * 
          * AF: nome : la porzione "locale" dell'inidirizzo email.
+         * regex : l'espressione regolare che deve rispettare {@code this}.
          */
 
         // ATTRIBUTI
         /** La stringa corrispondente alla porzione locale di {@code this} */
         private final String nome;
+        /** L'espressione regolare che deve rispettare {@code this} */
+        final static String regex = "^[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*$";
         
         // COSTRUTTORE
 
@@ -43,15 +47,19 @@ public class Indirizzo {
 
             if (nome.isEmpty()) throw new IllegalArgumentException("Il nome avuto per argomento non deve essere vuoto.");
 
+            String strRis = "";
+
             if (nome.contains(" ")) {
                 String[] result = nome.split(" ");                
 
-                for (int i = 0; i < result.length(); i++) {
-                    this.nome += result[i];
-                    if (i != result.length() - 1) {
-                        this.nome += ".";
+                for (int i = 0; i < result.length; i++) {
+                    strRis += result[i];
+                    if (i != result.length - 1) {
+                        strRis += ".";
                     }
                 }
+
+                this.nome = strRis;
 
                 if (!checkEspressione(this.nome)) throw new IllegalArgumentException("La porzione locale deve rispettare l'espressione regolare.");
                 
@@ -65,7 +73,7 @@ public class Indirizzo {
         // METODI
 
         /**
-         * Restituisce un valore {@code True/False} se la stringa {@code s} avuta per argomento rispetta l'espressione regolare "^[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*$".
+         * Restituisce un valore {@code True/False} se la stringa {@code s} avuta per argomento rispetta l'espressione regolare.
          *
          * @param s La stringa che si intende controllare.
          * 
@@ -77,11 +85,11 @@ public class Indirizzo {
 
             if (s.isEmpty()) throw new IllegalArgumentException("La stringa avuta per argomento non deve essere vuota.");
 
-            String regex = "^[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*$";
+            Pattern pattern = Pattern.compile(this.regex);
 
-            Pattern pattern = Pattern.compile(regex);
+            Matcher matcher = pattern.matcher(s);
 
-            return Matcher matcher = pattern.matcher(s);
+            return matcher.matches();
         }
 
         /**
@@ -103,15 +111,17 @@ public class Indirizzo {
         /**
          * IR: Il nome del dominio non deve essere null.
          * Il nome del dominio non deve essere vuoto.
-         * Il nome del dominio deve rispettare l'espressione regolare "^[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$".
+         * Il nome del dominio deve rispettare l'espressione regolare.
          * 
          * AF: nomeDom : nome del dominio
-         * estensioneDom : estensione del dominio
+         * regex : espressione regolare che deve rispettare {@code this}.
          */
 
         // ATTRIBUTI
         /** Il nome di {@code this} */
-        public final String nomeDom;
+        private final String nomeDom;
+        /** L'espressione regolare che deve rispettare {@code this} */
+        static final String regex = "^[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
 
         // COSTRUTTORE
 
@@ -129,9 +139,7 @@ public class Indirizzo {
 
             if (nomeDom.isEmpty()) throw new IllegalArgumentException("Il nome del dominio non deve essere vuoto.");
 
-            nomeDom += estensioneDom;
-
-            if (!checkEspressione(nomeDom)) throw IllegalArgumentException("Il dominio non rispetta l'espressione regolare.");
+            if (!checkEspressione(nomeDom)) throw new IllegalArgumentException("Il dominio non rispetta l'espressione regolare.");
 
             this.nomeDom = nomeDom;
         }
@@ -139,7 +147,7 @@ public class Indirizzo {
         // METODI
 
         /**
-         * Restituisce un valore {@code True/False} se la stringa {@code s} avuta per argomento rispetta l'espressione regolare "^[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$".
+         * Restituisce un valore {@code True/False} se la stringa {@code s} avuta per argomento rispetta l'espressione regolare.
          *
          * @param s La stringa che si intende controllare.
          * 
@@ -151,11 +159,11 @@ public class Indirizzo {
 
             if (s.isEmpty()) throw new IllegalArgumentException("La stringa avuta per argomento non deve essere vuota.");
 
-            String regex = "^[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+            Pattern pattern = Pattern.compile(this.regex);
 
-            Pattern pattern = Pattern.compile(regex);
+            Matcher matcher = pattern.matcher(s);
 
-            return Matcher matcher = pattern.matcher(s);
+            return matcher.matches();
         }
 
         /**
@@ -205,12 +213,13 @@ public class Indirizzo {
 
         if (cntChiocciola == 0 || cntChiocciola > 1) throw new IllegalArgumentException("L'indirizzo email avuto per argomento deve contenere una e una sola chiocciola.");
 
-        String[1] res = email.split("@");
+        String[] res = email.split("@");
 
         this.loc = new Locale(res[0]);
         this.dom = new Dominio(res[1]);
     }
 
     // METODI
+
 
 }
