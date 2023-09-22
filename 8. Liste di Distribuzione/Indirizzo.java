@@ -112,7 +112,7 @@ public class Indirizzo {
          * 
          * @return La porzione locale dell'inirizzo email.
          */
-        private String getLoc() {
+        public String getLoc() {
             return nome;
         }
     }
@@ -195,7 +195,7 @@ public class Indirizzo {
          * 
          * @return La porzione dominio dell'inirizzo email.
          */
-        private String getDom() {
+        public String getDom() {
             return nomeDom;
         }
 

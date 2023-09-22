@@ -101,12 +101,110 @@ public class Alias {
         return Collections.unmodifiableSet(indirizzi);
     }
 
-    public void addIndirizzo(final Indirizzo ind) {
+    /**
+     * Modifica {@code this} aggiungendo alla lista di indirizzi locali l'indirizzo
+     * {@code ind} avuto per argomento.
+     * 
+     * @param ind La porzione locale dell'indirizzo da aggiungere a {@code this}.
+     * 
+     * @throws NullPointerException Se {@code ind} è null.
+     */
+    public void addIndirizzo(final Indirizzo.Locale ind) {
+        Objects.requireNonNull(ind, "La porzione locale dell'indirizzo avuta per argomento non deve essere null.");
 
+        indirizzi.add(ind);
     }
 
-    public void removeIndirizzo() {
+    /**
+     * Rimuove da {@code this} un elemento locale {@code ind} avuto per argomento.
+     * 
+     * @param ind La porzione locale di un indirizzo che si intende rimuovere da
+     *            {@code this}.
+     * 
+     * @throws NullPointerException     Se {@code ind} è null.
+     * @throws IllegalArgumentException Se {@code ind} non esiste in {@code this}.
+     */
+    public void removeIndirizzo(final Indirizzo.Locale ind) {
+        Objects.requireNonNull(ind, "La porzione locale dell'indirizzo da rimuovere dall'alias non deve essere null.");
 
+        if (!indirizzi.contains(ind))
+            throw new IllegalArgumentException(
+                    "La porzione locale avuta per argomento deve far parte dell'elenco di indirizzi.");
+
+        indirizzi.remove(ind);
+    }
+
+    /**
+     * Restituisce {@code True/False} se l'alias {@code a} avuto per argomento è
+     * contenuto in {@code this}.
+     * 
+     * @param a L'alias di cui controllare la presenza in {@code this}.
+     * 
+     * @return {@code True/False} se {@code a} è presente o meno in {@code this}.
+     * 
+     * @throws NullPointerException se {@code a} è null.
+     */
+    public boolean containsAlias(final Alias a) {
+        Objects.requireNonNull(a, "L'alias avuto per argomento non deve essere null.");
+
+        if (dom.containsDom(a.getDominio()))
+            return true;
+
+        return false;
+    }
+
+    /**
+     * Restituisce un valore {@code True/False} se {@code ind} appartiene o o meno a
+     * {@code this}.
+     * 
+     * @param ind L'indirizzo di cui si vuole controllare la presenza in
+     *            {@code this}.
+     * 
+     * @return {@code True/False} se {@code int} è presente o meno in {@code this}.
+     * 
+     * @throws NullPointerException     Se {@code ind} è null.
+     * @throws IllegalArgumentException Se {@code ind} ha un dominio che non
+     *                                  coincide con quello di {@code this}.
+     */
+    public boolean containsIndirizzo(final Indirizzo ind) {
+        Objects.requireNonNull(ind, "L'indirizzo avuto per argomento non deve essere null.");
+
+        String domTmp = ind.getDominio();
+
+        String confronto = dom.getDom();
+
+        if (!confronto.contains(domTmp))
+            throw new IllegalArgumentException(
+                    "L'indirizzo avuto per argomento non ha un dominio che coincide con quello di this.");
+
+        for (Indirizzo.Locale il : indirizzi) {
+            if (il.getLoc().equals(ind.getLocale()))
+                return true;
+        }
+
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.nome);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Alias other = (Alias) obj;
+        if (nome == null) {
+            if (other.nome != null)
+                return false;
+        } else if (!nome.equals(other.nome))
+            return false;
+        return true;
     }
 
 }
