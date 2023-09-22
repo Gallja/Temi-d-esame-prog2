@@ -9,7 +9,7 @@ import java.util.*;
  * Le istanze di questa classe sono mutabili.
  */
 
-public class Alias {
+public class Alias implements Iterable<Indirizzo.Locale> {
     /**
      * IR: Il nome di {@code this} non deve essere null.
      * Il nome di {@code this} non deve essere vuoto.
@@ -207,4 +207,8 @@ public class Alias {
         return true;
     }
 
+    @Override
+    public Iterator<Indirizzo.Locale> iterator() {
+        return indirizzi.iterator();
+    }
 }
