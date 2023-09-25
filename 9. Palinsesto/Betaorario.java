@@ -38,7 +38,7 @@ public class Betaorario implements Comparable<Betaorario> {
      * @throws IllegalArgumentException Se {@code betaminuti} non è compreso fra 0 e
      *                                  79 (estremi inclusi).
      */
-    public Betaorario(int betaore, int betaminuti) {
+    public Betaorario(final int betaore, final int betaminuti) {
         if (betaore < 0 || betaore > 30)
             throw new IllegalArgumentException(
                     "Le betaore avute per argomento devono essere comprese fra 0 e 30, estremi inclusi.");
