@@ -10,9 +10,11 @@ import java.util.*;
 
 public class Palinsesto implements Iterable<Trasmissione> {
     /**
-     * IR:
+     * IR: La lista di trasmissioni non deve essere null.
+     * La lista di trasmissioni non deve contenere valori null.
+     * La lista di trasmissioni non deve contenere sovrapposizioni di trasmissioni.
      * 
-     * AF:
+     * AF: trasmissioni : la lista di trasmissioni che compongono il palinsesto.
      */
 
     // ATTRIBUTI
