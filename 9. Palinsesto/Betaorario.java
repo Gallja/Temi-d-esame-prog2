@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 /**
  * OVERVIEW: {@code Betaorario }è una classe concreta che implementa stato e
  * metodi di un orario formato da {@code betaore} e {@code betaminuti}.
@@ -86,6 +88,57 @@ public class Betaorario implements Comparable<Betaorario> {
             return -1;
 
         return 0;
+    }
+
+    /**
+     * Restituisce un nuovo {@code Betaorario} frutto della somma fra {@code this} e
+     * {@code other}.
+     * 
+     * @param other Il Betaorario che si intende sommare a {@code this}.
+     * 
+     * @return Il Betaorario frutto della somma fra {@code this} e {@code other}.
+     * 
+     * @throws NullPointerException Se {@code other} è null.
+     */
+    public Betaorario sommaBetaorario(final Betaorario other) {
+        Objects.requireNonNull(other, "Il betaorario avuto per argomento non deve essere null.");
+
+        int newOre = this.getBetaore() + other.getBetaore();
+
+        if (newOre > 30) {
+            int newOre2 = newOre - 30;
+            int newMin = this.getBetaminuti() + other.getBetaminuti();
+
+            if (newMin > 79) {
+                int newMin2 = newMin - 79;
+                int newOre3 = newOre2 + 1;
+
+                if (newOre3 > 30) {
+                    int oreDef = newOre3 - 30;
+                    return new Betaorario(oreDef, newMin2);
+                }
+
+                return new Betaorario(newOre3, newMin2);
+            }
+
+            return new Betaorario(newOre2, newMin);
+        }
+
+        int newMin = this.getBetaminuti() + other.getBetaminuti();
+
+        if (newMin > 79) {
+            int newMin2 = newMin - 79;
+            int newOre3 = newOre + 1;
+
+            if (newOre3 > 30) {
+                int oreDef = newOre3 - 30;
+                return new Betaorario(oreDef, newMin2);
+            }
+
+            return new Betaorario(newOre3, newMin2);
+        }
+
+        return new Betaorario(newOre, newMin);
     }
 
     @Override
