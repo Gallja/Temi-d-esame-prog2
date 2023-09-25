@@ -31,20 +31,65 @@ public class FasciaBetaoraria {
     // COSTRUTTORE
 
     /**
-     * Costruisce un nuovo oggetto {@code this} a partire dall' {@code inizio} e dalla {@code durata} avuti per argomento.
+     * Costruisce un nuovo oggetto {@code this} a partire dall' {@code inizio} e
+     * dalla {@code durata} avuti per argomento.
      * 
      * @param inizio L'inizio con cui si intende istanziare {@code this}.
      * @param durata La durata di {@code this}.
      * 
-     * @throws NullPointerException Se {@code inizio} è null.
-     * @throws NullPointerException Se {@code durata} è null.
+     * @throws NullPointerException    Se {@code inizio} è null.
+     * @throws NullPointerException    Se {@code durata} è null.
+     * @throws IllegalArgumentExcepton Se {@code durata} è tale per cui {@code fine}
+     *                                 non è nello stesso giorno di {@code inizio}.
      */
     public FasciaBetaoraria(final Betaorario inizio, final Betaorario durata) {
         Objects.requireNonNull(inizio, "L'inizio della fascia betaoraria non deve essere null.");
 
         Objects.requireNonNull(durata, "La durata della fascia betaoraria non deve essere null.");
+
+        this.inizio = inizio;
+        this.durata = durata;
+
+        this.fine = inizio.sommaBetaorario(durata);
+
+        if (inizio.getBetaore() < fine.getBetaore())
+            throw new IllegalArgumentException(
+                    "La durata avuta per argomento non deve far sforare il giorno di 79 betaore.");
     }
 
     // METODI
+
+    /**
+     * Restituisce un Betaorario corrispondente all'inizio di {@code this}.
+     * 
+     * @return L'inizio di {@code this}.
+     */
+    public Betaorario getInizio() {
+        return inizio;
+    }
+
+    /**
+     * Restituisce un Betaorario corrispondente alla durata di {@code this}.
+     * 
+     * @return La durata di {@code this}.
+     */
+    public Betaorario getDurata() {
+        return durata;
+    }
+
+    /**
+     * Restituisce un Betaorario corrispondente alla fine di {@code this}.
+     * 
+     * @return La fine di {@code this}.
+     */
+    public Betaorario getFine() {
+        return fine;
+    }
+
+    @Override
+    public String toString() {
+        return "FasciaBetaoraria [inizio=" + inizio.toString() + ", durata=" + durata.toString() + ", fine="
+                + fine.toString() + "]";
+    }
 
 }
